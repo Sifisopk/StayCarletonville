@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Carletonville Guide</title>
+</head>
+
+<body>
+
+    <!-- Nav -->
+    <section class="guide-page-header">
+        <nav>
+            <div class="logo"><span>Stay</span>Carletonville</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="listings.html">Browse stays</a></li>
+                <li><a href="guide.html">Guide</a></li>
+                <li><a href="#services">About</a></li>
+                <li id="list-btn"><a href="#contact">List Your B&B</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <!-- Hero: Featured Event -->
+    <div class="guide-hero" id="guideHero">
+        <div class="guide-hero-content">
+            <span class="guide-hero-badge">Upcoming Event</span>
+            <h1 id="featuredEventTitle">Carletonville Summer Festival</h1>
+            <div class="guide-hero-meta">
+                <span><i class="fa-regular fa-calendar"></i> <span id="featuredEventDate">December 15–17,
+                        2024</span></span>
+                <span><i class="fa-solid fa-location-dot"></i> <span id="featuredEventLocation">Central Park,
+                        Carletonville</span></span>
+            </div>
+            <a href="#events" class="guide-hero-btn" id="featuredEventBtn">View Event Details</a>
+        </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="guide-tabs" id="guideTabs">
+        <button class="guide-tab active" data-target="events">
+            <i class="fa-solid fa-calendar-days"></i> Events
+        </button>
+        <button class="guide-tab" data-target="restaurants">
+            <i class="fa-solid fa-utensils"></i> Restaurants
+        </button>
+        <button class="guide-tab" data-target="nightlife">
+            <i class="fa-solid fa-music"></i> Nightlife
+        </button>
+        <button class="guide-tab" data-target="attractions">
+            <i class="fa-solid fa-landmark"></i> Attractions
+        </button>
+        <button class="guide-tab" data-target="tours">
+            <i class="fa-solid fa-map"></i> Tours
+        </button>
+    </div>
+
+    <!-- === EVENTS SECTION === -->
+    <div class="guide-content-section active" id="events">
+        <div class="guide-section">
+            <div class="guide-section-header">
+                <div>
+                    <h2>Upcoming Events</h2>
+                    <p>Discover exciting happenings in Carletonville</p>
+                </div>
+                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="events-grid" id="eventsGrid"></div>
+        </div>
+    </div>
+
+    <!-- === RESTAURANTS SECTION === -->
+    <div class="guide-content-section" id="restaurants">
+        <div class="guide-section">
+            <div class="guide-section-header">
+                <div>
+                    <h2>Best Restaurants</h2>
+                    <p>Savor the flavors of Carletonville</p>
+                </div>
+                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="restaurants-grid" id="restaurantsGrid"></div>
+        </div>
+    </div>
+
+    <!-- === NIGHTLIFE SECTION === -->
+    <div class="guide-content-section" id="nightlife">
+        <div class="guide-section">
+            <div class="guide-section-header">
+                <div>
+                    <h2>Nightlife & Entertainment</h2>
+                    <p>Where the night comes alive</p>
+                </div>
+                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="nightlife-grid" id="nightlifeGrid"></div>
+        </div>
+    </div>
+
+    <!-- === ATTRACTIONS SECTION === -->
+    <div class="guide-content-section" id="attractions">
+        <div class="guide-section">
+            <div class="guide-section-header">
+                <div>
+                    <h2>Top Attractions</h2>
+                    <p>Must-see places in and around Carletonville</p>
+                </div>
+                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="attractions-grid" id="attractionsGrid"></div>
+        </div>
+    </div>
+
+    <!-- === TOURS SECTION === -->
+    <div class="guide-content-section" id="tours">
+        <div class="guide-section">
+            <div class="guide-section-header">
+                <div>
+                    <h2>Guided Tours</h2>
+                    <p>Explore Carletonville with a local expert</p>
+                </div>
+                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="tours-grid" id="toursGrid"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-container">
+        <div class="footer-header">
+            <h3>Stay Carletonville</h3>
+            <p>Your gateway to authentic bed and breakfast experiences in Carletonville</p>
+            <div class="footer-icons">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="listings.html">Browse Stays</a>
+                <a href="guide.html">Guide</a>
+                <a href="#">About Us</a>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <p><i class="fa-solid fa-map-pin"></i> 123 Main Street, Carletonville</p>
+                <p><i class="fa-solid fa-phone"></i> +27 (0) 12 345 6789</p>
+                <p><i class="fa-solid fa-envelope"></i> <a
+                        href="mailto:info@staycarletonville.com">info@staycarletonville.com</a></p>
+            </div>
+        </div>
+        <div class="footer-copy">
+            <p>&copy; 2026 Stay Carltonville. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/guide.js"></script>
+</body>
+
+</html>
