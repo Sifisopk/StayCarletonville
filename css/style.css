@@ -1,43 +1,20 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        header {
-    position: relative;
-    background-image: url('../Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 100vh;
-    display: flex;
-     z-index: 1000;
+/* =====================
+   RESET & BASE
+===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-
-
-
-
-
-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-      z-index: 0;
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
-
-
-.hero {
-    position: relative;
-    z-index: 1;
-}
-
+/* =====================
+   NAV
+===================== */
 nav {
     position: fixed;
     width: 100%;
@@ -45,697 +22,886 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color:#111827;
+    background-color: #111827;
     z-index: 1000;
 }
 
-        .logo {
-            font-size: 15pxpx;
-            margin-left: 15%;
-            font-weight: bold;
-            font-family: "Cascadia Mono";
-            color: #fff;
-        }
-
-        .logo span{
-            font-size: 20px;
-            font-family: sans-serif;
-        }
-
-        .nav-links {
-            margin-right: 15%;
-            align-items: baseline;
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #ddd;
-        }
-
-        #list-btn{
-            background-color: #fff;
-            padding: 8px;
-            border-radius: 20px;
-        }
-
-        #list-btn a{
-            color: #111827;
-            font-size: 15px;
-            font-weight: 400;
-        }
-
-        .hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-bottom: 60px;
-        }
-
-
-        #sub-1{
-            color: #fff;
-            font-size: 15px;
-            margin: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-           max-width: 300px;
-    width: 90%;
-            font-family:  "JetBrains Mono", monospace;
-            text-align: center;
-        }
-
-        #sub-2{
-            text-align: center;
-            font-size: 45px;
-            color: #fff;
-             font-family:  "JetBrains Mono", monospace;
-             font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        #sub-p{
-            color: #fff;
-           max-width: 600px;
-    width: 90%;
-            text-align: center;
-            margin-bottom: 20px;
-             font-family: "Cascadia Mono";
-             font-weight: 200;
-        }
-
-        .sub-heading p{
-            text-align: inherit;
-        }
-
-        .search-container {
-            display: flex;
-            width: 80%;
-            max-width: 500px;
-            margin-bottom: 40px;
-        }
-
-        .search-container input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 20px 0 0 20px;
-            font-size: 16px;
-            outline: none;
-        }
-
-        
-
-        .search-container button {
-            border: 1px solid #fff;
-            padding: 15px 30px;
-            background-color: transparent;
-            color: white;
-          
-            border-radius: 0 20px 20px 0;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .search-container button:hover {
-            background-color: #111827;
-            border: 1px solid #111827;
-        }
-        .trust-section{
-            background-color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: row;
-            min-height: 30vh;
-              column-gap: 100px;
-        }
-
-        .trust-card{
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-            width: 300px;
-            height: auto;
-          
-        }
-
-       .trust-card i,
-.trust-card h4,
-.trust-card p {
-    padding: 5px;
-}
-        .trust-card p{
-            font-size: 14px;
-             font-family: "Cascadia Mono";
-             font-weight: 350;
-        }
-
-       .trust-icon {
-    
-        width: 40px;  
-        height: 40px; 
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: #f5f2ea;
-        font-size: 25px;
-        padding: 0; 
-    }
-
-      .trust-icon:hover {
-  cursor: pointer;
-  background-color:#111827;
-  color: #fff;
-  transform: scale(1.1);
+.logo {
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Cascadia Mono", monospace;
+    color: #fff;
 }
 
-
-/*--- List cards styling---*/
-.listing-section{
-  background-color: #FFF;
+.logo span {
+    font-size: 20px;
+    font-family: sans-serif;
 }
 
+.nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    align-items: center;
+}
 
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
 
-.listing-sub-header{
+.nav-links a:hover { color: #ddd; }
+
+#list-btn {
+    background-color: #fff;
+    padding: 8px 12px;
+    border-radius: 20px;
+}
+
+#list-btn a {
+    color: #111827;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Hamburger — hidden on desktop */
+.nav-toggle {
+    display: none;
     flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+    z-index: 1001;
 }
 
-.listing-sub-header H1{
-     font-family: "Archivo Black", sans-serif;
-  font-weight: 700;
-  font-style: normal;
+.nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: 0.3s;
 }
 
-.listing-header {
-    padding: 30px 5%;
+/* =====================
+   HEADER / HERO
+===================== */
+header {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.box {
+    background: #111827;
+    --mask:
+        radial-gradient(103.23px at 50% calc(100% - 144px), #000 99%, #0000 101%) calc(50% - 120px) 0/240px 100%,
+        radial-gradient(103.23px at 50% calc(100% + 84px), #0000 99%, #000 101%) 50% calc(100% - 60px)/240px 100% repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+}
+
+.hero {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px 80px;
+    text-align: center;
+}
+
+#sub-1 {
+    color: #fff;
+    font-size: 14px;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    max-width: 300px;
+    width: 90%;
+    padding: 6px 12px;
+    font-family: "JetBrains Mono", monospace;
+    text-align: center;
+}
+
+#sub-2 {
+    text-align: center;
+    font-size: clamp(26px, 5vw, 48px);
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+#sub-p {
+    color: #fff;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Cascadia Mono", monospace;
+    font-weight: 200;
+    font-size: clamp(13px, 2vw, 16px);
+    line-height: 1.7;
+}
+
+.sub-heading p { text-align: inherit; }
+
+.search-container {
+    display: flex;
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 40px;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    font-size: 15px;
+    outline: none;
+    min-width: 0;
+}
+
+.search-container button {
+    border: 1px solid #fff;
+    padding: 14px 22px;
+    background-color: transparent;
+    color: white;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.search-container button:hover {
+    background-color: #111827;
+    border-color: #111827;
+}
+
+/* =====================
+   TRUST SECTION
+===================== */
+.trust-section {
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 550px;
+    gap: 40px;
+    min-height: 30vh;
+    padding: 60px 5%;
 }
 
-.view-all-btn a{
-text-decoration: none;
-color: #111827;
+.trust-card {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+}
+
+.trust-card i,
+.trust-card h4,
+.trust-card p { padding: 5px; }
+
+.trust-card p {
+    font-size: 14px;
+    font-family: "Cascadia Mono", monospace;
+    font-weight: 350;
+}
+
+.trust-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #f5f2ea;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.trust-icon:hover {
+    cursor: pointer;
+    background-color: #111827;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* =====================
+   LISTING SECTION
+===================== */
+.listing-section { background-color: #fff; }
+
+.listing-header {
+    padding: 40px 5% 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.listing-sub-header { display: flex; flex-direction: column; }
+
+.listing-sub-header h5 {
+    color: #6b7280;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+}
+
+.listing-sub-header H1 {
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+}
+
+.view-all-btn a {
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .card {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-
-
-
-.trust-text{
-  text-align: start;
-  font-size: 17px;
-  font-weight: 600;
-  color: #111827;
+/* =====================
+   LISTING CARDS
+===================== */
+.trust-text {
+    text-align: start;
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
 }
 
 .img-container {
-  width: 100%;
-  height: 240px;
-  overflow: hidden; /* This clips the scaled image */
-  border-radius: 30px 30px 0 0; /* Move radius here for a cleaner look */
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 30px 30px 0 0;
 }
 
 .pic-1 {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
 }
 
-.pic-1:hover {
-  transform: scale(1.05);
+.pic-1:hover { transform: scale(1.05); }
+
+.listing-card {
+    background-color: #fff;
+    border-radius: 30px;
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.listing-card{
-  background-color: #fff;
-  border-radius: 30px;
-
-  margin: 10px 15px 20px;
-  width: 370px;
-  height: auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-.listing-card:hover {
-  transform: translateY(-8px);
-}
-
-
+.listing-card:hover { transform: translateY(-8px); }
 
 .card-text {
-  text-align: start;
-  padding: 0 10px;
-  font-size: 1.1em;
-  color: #555454;
- font-family: "Oleo Script", system-ui;
-  font-weight: 700;
-  font-style: normal;
+    text-align: start;
+    padding: 10px 12px 0;
+    font-size: 1.05em;
+    color: #555454;
+    font-family: "Oleo Script", system-ui;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .listing-card p {
     text-align: left;
-  color: #555454;
-  font-size: 0.9em;
-  font-weight: 500;
-  line-height: 1.5;
-  padding-top: 10px;
-  padding-left: 10px;
+    color: #555454;
+    font-size: 0.85em;
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 8px 12px 0;
 }
 
 .listing-card .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-  padding-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 12px;
+    padding-left: 12px;
 }
 
 .listing-card .tags span {
-  background-color: #111827;
-  border-radius: 10px;
-  padding: 3px 10px;
-  font-size: 0.7em;
-  font-weight: 600;
-  color: #fff;
+    background-color: #111827;
+    border-radius: 10px;
+    padding: 3px 10px;
+    font-size: 0.7em;
+    font-weight: 600;
+    color: #fff;
 }
 
 .view-btn {
-   text-decoration: none;
-  font-size: 13px;
-  padding: 3px 20px;
-  cursor: pointer;
-  color:#626874;
-  border-radius:5px;
-  border: 1px solid #cacaca;
-  background:#fff;
-  font-weight: 500;
-  transition: all 0.5s ease;
-  transition: transform 0.3s ease;
-}
-
-.view-btn{
-  color: #111827;
-  text-decoration: none;
-  font-weight: bold;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 16px;
+    cursor: pointer;
+    color: #111827;
+    border-radius: 5px;
+    border: 1px solid #cacaca;
+    background: #fff;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .view-btn:hover {
-   transform: translateY(-5px);
-  background-color:#111827;
-  color:#fff;
-  border: none;
+    transform: translateY(-3px);
+    background-color: #111827;
+    color: #fff;
+    border-color: #111827;
 }
 
-
-
-
-.price-tags{
-  text-decoration: none;
-  font-size: 15px;
-  padding: 3px 20px;
-  margin: 15px;margin-right: 60px;
-  color:#111827;
-  border-radius:5px;
-  background:transparent;
-  font-weight: 500;
-  transition: all 0.5s ease;
-  transition: transform 0.3s ease;
+.price-tags {
+    text-decoration: none;
+    font-size: 15px;
+    padding: 3px 20px;
+    margin: 15px;
+    color: #111827;
+    border-radius: 5px;
+    background: transparent;
+    font-weight: 500;
 }
 
-.listing-view{
-    margin-bottom: 10PX;
-    column-gap: 100px;
-    align-items: baseline;
+.listing-view {
+    margin: 0 12px 14px;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
-
-
+/* =====================
+   INDEX GUIDE BANNER
+===================== */
 .list-bnb-image img {
     border-radius: 20px;
     width: 200px;
     height: 250px;
-  object-fit: cover;
-  transition: transform 0.3s ease-in-out;
-   transform: rotate(2deg);
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(2deg);
 }
 
-.list-bnb-image img:hover {
- transform: rotateX(3deg)  translateX(5px);
-}
+.list-bnb-image img:hover { transform: rotate(0deg) translateY(-5px); }
 
-.list-bnb-card{
-    background-color: transparent;
+.index-guide-content {
+    background: url('../Assets/images/aerial-view-beautiful-village-surrounded-by-nature.jpg');
+    background-size: cover;
+    background-position: center;
     border: 5px solid #111827;
     display: flex;
-border-radius: 30px;
-  width: 90%;
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 40px 30px;
-}
-
-.list-bnb-text{
-    display: flex;
-    flex-direction: column;
-}
-
-.list-bnb-text h2{
-font-size: 40px;
-font-family: serif;
-font-weight: 700;
-}
-
-.list-bnb-text p{
-  text-align: left;
-  color: #555454;
-  font-size: 0.9em;
-  font-weight: 500;
-  line-height: 1.5;
-  padding-top: 10px;
-
-}
-
-.list-bnb-text ul,
-.list-bnb-text li{
-    text-decoration: none;
-    list-style: none;
-     text-align: left;
-  color: #555454;
-  font-size: 1.1em;
-  font-weight: 500;
-  line-height: 1.1;
-  padding-top: 10px;
-}
-
-.list-bnb-btn{
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 60px 30px;
     text-align: center;
-    margin-top: 10px;
-    text-decoration: none;
-    color: #fff;
-    width: 150px;
-background-color: #111827;
-            padding: 8px;
-            border-radius: 20px;
+    position: relative;
 }
 
-        
-.list-bnb-btn a{
-            font-size: 15px;
-            font-weight: 400;
-        }
-
-
-
-.footer-container{
-    display: flex;
-    flex-direction: column;
-    background-color: #111827;
-    color: #fff;
-    padding: 40px 5%;
-    gap: 80px;
+.index-guide-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 25px;
 }
 
-.footer-header{
+.index-guide-content .guide-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.index-guide-content #featuredEventTitle { color: #fff; }
+
+.index-guide-content .guide-hero-badge,
+.index-guide-content .guide-hero-btn {
     display: flex;
-    flex-direction: column;
+    text-align: center;
     align-items: center;
     justify-content: center;
 }
 
-.footer-content{
+/* =====================
+   LIST B&B CARD
+===================== */
+.list-bnb-card {
+    background-color: transparent;
+    border: 5px solid #111827;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    gap: 30px;
+}
+
+.list-bnb-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 240px;
+}
+
+.list-bnb-text h2 {
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-family: serif;
+    font-weight: 700;
+}
+
+.list-bnb-text p {
+    text-align: left;
+    color: #555454;
+    font-size: 0.9em;
+    font-weight: 500;
+    line-height: 1.6;
+    padding-top: 10px;
+}
+
+.list-bnb-text ul,
+.list-bnb-text li {
+    text-decoration: none;
+    list-style: none;
+    text-align: left;
+    color: #555454;
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 1.4;
+    padding-top: 8px;
+}
+
+.list-bnb-btn {
+    display: inline-block;
+    text-align: center;
+    margin-top: 18px;
+    text-decoration: none;
+    color: #fff;
+    width: 160px;
+    background-color: #111827;
+    padding: 10px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.list-bnb-btn:hover { background-color: #2563eb; }
+
+.list-bnb-btn a { font-size: 15px; font-weight: 400; }
+
+.list-bnb-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #111827;
+    color: #fff;
+    padding: 50px 5%;
+    gap: 50px;
+}
+
+.footer-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.footer-icons a { color: #fff; transition: color 0.3s; }
+.footer-icons a:hover { color: #93c5fd; }
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
     justify-content: space-between;
 }
 
-.footer-column{
+.footer-column {
     display: flex;
     flex-direction: column;
+    min-width: 140px;
 }
 
 footer h3 {
     font-size: 18px;
-    margin-bottom: 15px;
-    font-family: "Cascadia Mono";
+    margin-bottom: 12px;
+    font-family: "Cascadia Mono", monospace;
     font-weight: 700;
 }
 
-
+footer h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
 
 footer a {
-    color: #fff;
+    color: #d1d5db;
     text-decoration: none;
     font-size: 14px;
-    padding: 3px 0px;
+    padding: 3px 0;
     transition: 0.3s;
 }
 
-footer a:hover {
-    color: #f5f2ea;
-}
+footer a:hover { color: #fff; }
 
 footer p {
     font-size: 14px;
     line-height: 1.6;
-    padding: 3px 0[x];
+    color: #d1d5db;
 }
 
-/*==================
-    Listing page
-====================*/
+.footer-copy {
+    border-top: 1px solid #374151;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+}
 
-.listings-page-header{
+/* =====================
+   LISTINGS PAGE
+===================== */
+.listings-page-header {
     position: relative;
     background-size: cover;
     background-position: center;
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
+    flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.30) 0px 25px 20px -30px;
 }
 
-
-
-        .listing-page-hero{
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-
-
-        .list-sub-2{
-            text-align: center;
-            font-size: 45px;
-            color: #000;
-             font-family:  "JetBrains Mono", monospace;
-             font-weight: 800;
-            margin-bottom: 20px;
-        }
-
-        .list-sub-p{
-            color: #000;
-           max-width: 600px;
-            width: 90%;
-            text-align: center;
-            margin-bottom: 20px;
-             font-family: "Cascadia Mono";
-             font-weight: 200;
-        }
-
-
-        .list-search-container {
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.541);
-            display: flex;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 30px;
-        }
-
-        .list-search-container input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-         
-            border-radius: 20px 0 0 20px;
-            font-size: 16px;
-            outline: none;
-        }
-
-        
-
-        .list-search-container button {
-            border: 1px solid transparent;
-            padding: 15px 30px;
-            background-color: transparent;
-            color: #000;
-          
-            border-radius: 0 20px 20px 0;
-            cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
-        }
-
-        .list-search-container button:hover {
-            background-color: #111827;
-            border: 1px solid #111827;
-            color: #FFF;
-        }
-
-/*==============
-pagination
-================*/
-
-.pagination{
+.listing-page-hero {
+    flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 10px;
-    margin: 40px 0;
+    align-items: center;
+    padding: 120px 20px 60px;
+    text-align: center;
 }
 
-.pagination button{
+.list-sub-2 {
+    text-align: center;
+    font-size: clamp(26px, 5vw, 45px);
+    color: #000;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.list-sub-p {
+    color: #444;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Cascadia Mono", monospace;
+    font-weight: 200;
+    font-size: clamp(13px, 2vw, 15px);
+}
+
+.list-search-container {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 30px;
+    background: #fff;
+}
+
+.list-search-container input {
+    flex: 1;
+    padding: 14px 16px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    font-size: 15px;
+    outline: none;
+    min-width: 0;
+}
+
+.list-search-container button {
+    border: 1px solid transparent;
+    padding: 14px 22px;
+    background-color: transparent;
+    color: #000;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.list-search-container button:hover {
+    background-color: #111827;
+    border-color: #111827;
+    color: #fff;
+}
+
+/* =====================
+   FILTER BAR
+===================== */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1.5rem;
+    padding: 1.2rem 2rem;
+    margin: 1.5rem auto;
+    max-width: 1200px;
+    width: 90%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.filter-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+}
+
+.filter-group select {
+    padding: 0.5rem 0.8rem;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+.range-wrapper { display: flex; align-items: center; gap: 0.6rem; }
+
+.range-wrapper input[type="range"] {
+    width: 140px;
+    accent-color: #2c7be5;
+}
+
+.range-wrapper span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2c7be5;
+    min-width: 45px;
+}
+
+.checkbox-group { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #444;
+    cursor: pointer;
+}
+
+#resetFilters {
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    color: #555;
+    transition: all 0.2s;
+}
+
+#resetFilters:hover { border-color: #2c7be5; color: #2c7be5; }
+
+.no-results {
+    text-align: center;
+    padding: 3rem;
+    color: #999;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.active-page {
+    background: #2c7be5;
+    color: white;
+    border-color: #2c7be5;
+}
+
+/* =====================
+   PAGINATION
+===================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 40px 0;
+    padding: 0 16px;
+}
+
+.pagination button {
     padding: 10px 15px;
     border: 1px solid #ccc;
     background: white;
     cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s;
 }
 
-.pagination button.active{
+.pagination button.active,
+.pagination button:hover {
     background: black;
     color: white;
+    border-color: #000;
 }
 
-/*==============
-Details page
-================*/
-
-
-.details-page-header{
+/* =====================
+   DETAILS PAGE
+===================== */
+.details-page-header {
     position: relative;
     background-size: cover;
     background-position: center;
     display: flex;
+    flex-direction: column;
 }
 
-.details-page{
+.details-page {
     max-width: 1200px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 20px 5%;
 }
 
-.details-grid{
+.details-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 30px;
     align-items: start;
 }
 
-.property-image img{
+.property-image img {
     width: 100%;
     height: 350px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-
-.property-info{
-    border: 1px solid #000;
+.property-info {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     padding: 20px;
     border-radius: 10px;
 }
 
-.property-title{
+.property-title {
+    font-size: clamp(20px, 3vw, 28px);
     margin-bottom: 10px;
 }
 
-.property-location{
-    margin-bottom: 10px;
-}
+.property-location { margin-bottom: 10px; color: #6b7280; }
 
-.property-price{
+.property-price {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.property-stats{
+.property-stats {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     margin-top: 10px;
     flex-wrap: wrap;
+    font-size: 14px;
 }
 
-/*======= Abaut section =====*/
-
-.about-section{
-     border: 1px solid #000;
+.about-section {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 25px;
     padding: 20px;
     border-radius: 10px;
 }
 
-.about-section h3{
-    margin-bottom: 10px;
-}
+.about-section h3 { margin-bottom: 10px; }
+.about-section p { line-height: 1.6; }
 
-.about-section p{
-    line-height: 1.6;
-}
-
-/*======= Contact Card (Right Side) =====*/
-
-.contact-card{
+.contact-card {
     border: 1px solid #000;
     padding: 20px;
     border-radius: 10px;
     position: sticky;
-    top: 30px;
+    top: 80px;
 }
 
-/*======= Contact Buttons =====*/
-
-.contact-buttons{
+.contact-buttons {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-top: 15px;
 }
 
-.contact-btn{
+.contact-btn {
     background-color: #111827;
-    color: #FFF;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -745,778 +911,634 @@ Details page
     text-decoration: none;
     font-weight: 500;
     cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
 }
 
-/*======= Amenities section =====*/
-.Amenities-section{
-     border: 1px solid #000;
+.contact-btn:hover { background-color: #2563eb; }
+
+.Amenities-section {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 25px;
     padding: 20px;
     border-radius: 10px;
 }
+
+.Amenities-section h3 { margin-bottom: 10px; }
 
 .Amenities-section .tags {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 100px;
-  margin-bottom: 15px;
-}
-
-.Amenities-section .tags span {
-  background-color: #fcf6f6;
-  border-radius: 10px;
-  padding: 15px 30px;
-  margin: 10px;
-  font-size: 0.9em;
-  font-weight: 600;
-  color: #555454;
-}
-
-/*======= bnb gallery section =====*/
-
-.bnb-gallery{
-    margin-top: 25px;
-    border: 1px solid #000;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.bnb-gallery div{
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     margin-top: 10px;
+    margin-bottom: 15px;
 }
 
-.bnb-pic{
+.Amenities-section .tags span {
+    background-color: #fcf6f6;
     border-radius: 10px;
-    width: 160px;
-    height: 110px;
+    padding: 12px 20px;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #555454;
+}
+
+/* =====================
+   BNB GALLERY
+===================== */
+.bnb-gallery {
+    margin-top: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.bnb-gallery h3 { margin-bottom: 10px; }
+
+.bnb-gallery div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.bnb-pic {
+    border-radius: 10px;
+    width: 100%;
+    height: 120px;
     object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.bnb-pic:hover { transform: scale(1.04); }
+
+/* =====================
+   LIGHTBOX
+===================== */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 10px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px; right: 40px;
+    font-size: 40px;
+    color: white;
     cursor: pointer;
 }
 
-/* ===== Lightbox ===== */
-
-.lightbox{
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.85);
-
-    display:none;
-    justify-content:center;
-    align-items:center;
-
-    z-index:1000;
+/* =====================
+   GUIDE PAGE
+===================== */
+.guide-page-header {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.lightbox-img{
-    max-width:80%;
-    max-height:80%;
-    border-radius:10px;
+.guide-hero {
+    position: relative;
+    width: 100%;
+    min-height: 420px;
+    background-image: url('Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px 60px;
 }
 
-.lightbox-close{
-    position:absolute;
-    top:25px;
-    right:40px;
-
-    font-size:40px;
-    color:white;
-    cursor:pointer;
+.guide-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
 }
 
-/*==== filter ====*/
-
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 1.5rem;
-  padding: 1.2rem 2rem;
-  margin: 1.5rem auto;
-  max-width: 1200px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+.guide-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    width: 90%;
 }
 
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+.guide-hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 18px;
 }
 
-.filter-group label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #888;
+.guide-hero h1 {
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(26px, 5vw, 48px);
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.15;
 }
 
-.filter-group select {
-  padding: 0.5rem 0.8rem;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  background: #fafafa;
+.guide-hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
 }
 
-.range-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+.guide-hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+.guide-hero-btn {
+    display: inline-block;
+    background: #2563eb;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
 }
 
-.range-wrapper input[type="range"] {
-  width: 140px;
-  accent-color: #2c7be5;
+.guide-hero-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+.guide-tabs {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 56px;
+    z-index: 100;
 }
 
-.range-wrapper span {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #2c7be5;
-  min-width: 45px;
+.guide-tabs::-webkit-scrollbar { display: none; }
+
+.guide-tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
 }
 
-.checkbox-group {
-  display: flex;
-  gap: 0.8rem;
+.guide-tab.active {
+    color: #fff;
+    background: #2563eb;
+    border-radius: 30px;
+    border-bottom: 3px solid transparent;
+    margin: 8px 0;
 }
 
-.checkbox-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.85rem;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0;
-  color: #444;
-  cursor: pointer;
+.guide-tab:hover:not(.active) { color: #111827; }
+
+.guide-content-section { display: block; }
+
+.guide-section {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 5%;
 }
 
-#resetFilters {
-  padding: 0.5rem 1.2rem;
-  background: transparent;
-  border: 1.5px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  color: #555;
-  transition: all 0.2s;
+.guide-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
-#resetFilters:hover {
-  border-color: #2c7be5;
-  color: #2c7be5;
+.guide-section-header h2 {
+    font-family: "Archivo Black", sans-serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: #111827;
 }
 
-.no-results {
-  text-align: center;
-  padding: 3rem;
-  color: #999;
-  font-size: 1rem;
-  width: 100%;
+.guide-section-header p { color: #6b7280; font-size: 14px; margin-top: 4px; }
+
+.guide-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-.active-page {
-  background: #2c7be5;
-  color: white;
-  border-color: #2c7be5;
+.guide-view-all:hover { text-decoration: underline; }
+
+/* Guide grids */
+.events-grid,
+.restaurants-grid,
+.attractions-grid,
+.tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
 }
 
-
- /* ===== Guide Page Styles ===== */
-
-        .guide-page-header {
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-        }
-
-        /* ===== Guide Hero / Featured Event ===== */
-
-        .guide-hero {
-            position: relative;
-            width: 100%;
-            min-height: 420px;
-            background-image: url('Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 100px 20px 60px;
-        }
-
-        .guide-hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
-        }
-
-        .guide-hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 700px;
-        }
-
-        .guide-hero-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(4px);
-            color: #fff;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            padding: 6px 18px;
-            border-radius: 20px;
-            margin-bottom: 18px;
-        }
-
-        .guide-hero h1 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 48px;
-            color: #fff;
-            margin-bottom: 16px;
-            line-height: 1.15;
-        }
-
-        .guide-hero-meta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 14px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
-
-        .guide-hero-meta span {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .guide-hero-btn {
-            display: inline-block;
-            background: #2563eb;
-            color: #fff;
-            padding: 14px 32px;
-            border-radius: 30px;
-            font-size: 15px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.3s, transform 0.2s;
-        }
-
-        .guide-hero-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-        }
-
-        /* ===== Category Filter Tabs ===== */
-
-        .guide-tabs {
-            background: #fff;
-            border-bottom: 1px solid #e5e7eb;
-            padding: 0 5%;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            overflow-x: auto;
-            position: sticky;
-            top: 56px;
-            z-index: 100;
-        }
-
-        .guide-tab {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 20px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #6b7280;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-            transition: color 0.2s, border-color 0.2s;
-            background: none;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            outline: none;
-        }
-
-        .guide-tab.active {
-            color: #fff;
-            background: #2563eb;
-            border-radius: 30px;
-            border-bottom: 3px solid transparent;
-            margin: 8px 0;
-        }
-
-        .guide-tab:hover:not(.active) {
-            color: #111827;
-        }
-
-        /* ===== Guide Sections ===== */
-
-        .guide-section {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 0 5%;
-        }
-
-        .guide-section-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 28px;
-        }
-
-        .guide-section-header h2 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 28px;
-            color: #111827;
-        }
-
-        .guide-section-header p {
-            color: #6b7280;
-            font-size: 14px;
-            margin-top: 4px;
-        }
-
-        .guide-view-all {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #2563eb;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .guide-view-all:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== Event Cards ===== */
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .event-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .event-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
-        }
-
-        .event-card-img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-        }
-
-        .event-card-body {
-            padding: 18px;
-        }
-
-        .event-card-meta {
-            display: flex;
-            gap: 16px;
-            font-size: 12px;
-            color: #2563eb;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .event-card-meta span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .event-card h3 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 17px;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .event-card p {
-            font-size: 13.5px;
-            color: #6b7280;
-            line-height: 1.55;
-            margin-bottom: 14px;
-        }
-
-        .event-card-link {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #2563eb;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .event-card-link:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== Restaurant Cards ===== */
-
-        .restaurants-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .restaurant-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .restaurant-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
-        }
-
-        .restaurant-card-img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-        }
-
-        .restaurant-card-body {
-            padding: 18px;
-        }
-
-        .restaurant-card-title-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .restaurant-card h3 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 17px;
-            color: #111827;
-        }
-
-        .restaurant-rating {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            color: #f59e0b;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .restaurant-card p {
-            font-size: 13.5px;
-            color: #6b7280;
-            line-height: 1.55;
-            margin-bottom: 14px;
-        }
-
-        .restaurant-card-tags {
-            display: flex;
-            gap: 10px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .restaurant-card-tags span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        /* ===== Nightlife Cards ===== */
-
-        .nightlife-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 24px;
-        }
-
-        .nightlife-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .nightlife-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
-        }
-
-        .nightlife-card-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .nightlife-card-body {
-            padding: 16px;
-        }
-
-        .nightlife-card h3 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 16px;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .nightlife-vibe-badge {
-            display: inline-block;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .vibe-chill {
-            background: #dbeafe;
-            color: #1d4ed8;
-        }
-
-        .vibe-party {
-            background: #fce7f3;
-            color: #be185d;
-        }
-
-        .vibe-live {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .nightlife-card p {
-            font-size: 13px;
-            color: #6b7280;
-            line-height: 1.5;
-        }
-
-        /* ===== Attractions Cards ===== */
-
-        .attractions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-        }
-
-        .attraction-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .attraction-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
-        }
-
-        .attraction-card-img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-        }
-
-        .attraction-card-body {
-            padding: 18px;
-        }
-
-        .attraction-card h3 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 17px;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .attraction-card p {
-            font-size: 13.5px;
-            color: #6b7280;
-            line-height: 1.55;
-            margin-bottom: 12px;
-        }
-
-        .attraction-tag {
-            display: inline-block;
-            background: #f3f4f6;
-            color: #374151;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* ===== Tours Cards ===== */
-
-        .tours-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .tour-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .tour-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
-        }
-
-        .tour-card-img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-        }
-
-        .tour-card-body {
-            padding: 18px;
-        }
-
-        .tour-card h3 {
-            font-family: "Archivo Black", sans-serif;
-            font-size: 17px;
-            color: #111827;
-            margin-bottom: 8px;
-        }
-
-        .tour-card p {
-            font-size: 13.5px;
-            color: #6b7280;
-            line-height: 1.55;
-            margin-bottom: 12px;
-        }
-
-        .tour-card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .tour-price {
-            font-weight: 700;
-            color: #111827;
-            font-size: 15px;
-        }
-
-        .tour-book-btn {
-            background: #111827;
-            color: #fff;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .tour-book-btn:hover {
-            background: #2563eb;
-        }
-
-        /* Section hidden by default for tab switching */
-        /* .guide-content-section {
-            display: none;
-        }*/
-
-        .guide-content-section.active {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .guide-hero h1 {
-                font-size: 32px;
-            }
-
-            .guide-hero-meta {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .guide-section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-        }
-
-/* Large screens (desktop monitors) */
+.nightlife-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+/* Shared guide card */
+.event-card,
+.restaurant-card,
+.nightlife-card,
+.attraction-card,
+.tour-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover,
+.restaurant-card:hover,
+.nightlife-card:hover,
+.attraction-card:hover,
+.tour-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+}
+
+.event-card-img,
+.nightlife-card-img,
+.attraction-card-img,
+.tour-card-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+/* Restaurant image */
+.restaurant-card-img-wrap {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.restaurant-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.restaurant-card:hover .restaurant-card-img { transform: scale(1.05); }
+
+.restaurant-img-placeholder {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 44px;
+    color: rgba(255, 255, 255, 0.18);
+}
+
+.event-card-body,
+.restaurant-card-body,
+.nightlife-card-body,
+.attraction-card-body,
+.tour-card-body { padding: 18px; }
+
+.event-card-meta {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.event-card-meta span { display: flex; align-items: center; gap: 5px; }
+
+.event-card h3,
+.restaurant-card h3,
+.nightlife-card h3,
+.attraction-card h3,
+.tour-card h3 {
+    font-family: "Archivo Black", sans-serif;
+    font-size: 16px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.event-card p,
+.restaurant-card p,
+.nightlife-card p,
+.attraction-card p,
+.tour-card p {
+    font-size: 13.5px;
+    color: #6b7280;
+    line-height: 1.55;
+    margin-bottom: 12px;
+    padding: 0;
+}
+
+.event-card-link,
+.learn-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    text-decoration: none;
+    transition: gap 0.2s;
+}
+
+.event-card-link:hover,
+.learn-more-btn:hover { gap: 10px; }
+
+.restaurant-card-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.restaurant-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #f59e0b;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.restaurant-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.restaurant-card-tags {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: #6b7280;
+    flex-wrap: wrap;
+}
+
+.restaurant-card-tags span { display: flex; align-items: center; gap: 4px; }
+
+.directions-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #2563eb;
+    color: #fff;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+}
+
+.directions-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
+
+.nightlife-vibe-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.vibe-chill { background: #dbeafe; color: #1d4ed8; }
+.vibe-party { background: #fce7f3; color: #be185d; }
+.vibe-live  { background: #d1fae5; color: #065f46; }
+
+.attraction-tag {
+    display: inline-block;
+    background: #f3f4f6;
+    color: #374151;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.tour-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tour-price { font-weight: 700; color: #111827; font-size: 15px; }
+
+.tour-book-btn {
+    background: #111827;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.tour-book-btn:hover { background: #2563eb; }
+
+/* =====================
+   LARGE SCREENS (≥ 1400px)
+===================== */
 @media (min-width: 1400px) {
-    header {
-        min-height: 70vh;
-    }
-    .listing-page-hero{
-        height: 50vh;
-    }
-    
-   
-
-    .listings-page-header{
-             min-height: 50vh;
-    }
+    header { min-height: 70vh; }
+    .listing-page-hero { height: 50vh; }
+    .listings-page-header { min-height: 50vh; }
 }
 
-/* 900px */
+/* =====================
+   TABLET (≤ 1024px)
+===================== */
+@media (max-width: 1024px) {
+    .listing-header { gap: 20px; }
+    .list-bnb-card { align-items: center; }
+    .list-bnb-image img { width: 160px; height: 200px; }
+    .Amenities-section .tags { gap: 8px; }
+}
 
+/* =====================
+   MOBILE (≤ 768px)
+===================== */
+@media (max-width: 768px) {
 
-@media (max-width: 900px) {
+    /* Nav — hamburger */
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 72%;
+        max-width: 300px;
+        height: 100vh;
+        background: #111827;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 28px 40px;
+        gap: 22px;
+        transition: right 0.35s ease;
+        z-index: 999;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.35);
+        margin-right: 0;
+    }
+
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 17px; }
+    #list-btn { background: transparent; padding: 0; border-radius: 0; }
+    #list-btn a { color: #fff; font-size: 17px; font-weight: 400; }
+
+    /* Hero */
+    header { min-height: 100svh; }
+    .hero { padding: 90px 20px 50px; }
+    #sub-2 { font-size: 28px; }
+
+    /* Trust */
     .trust-section {
         flex-direction: column;
-        row-gap: 40px;
+        gap: 32px;
         padding: 40px 20px;
     }
+    .trust-card { width: 100%; max-width: 340px; }
 
-    .details-grid{
-    grid-template-columns: 1fr;
+    /* Listing header */
+    .listing-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 28px 5% 16px;
+    }
+
+    /* Cards */
+    .card { grid-template-columns: 1fr; width: 92%; }
+    .listing-card { width: 100%; margin: 0; }
+
+    /* Index guide banner */
+    .index-guide-content { padding: 50px 20px; }
+
+    /* B&B card */
+    .list-bnb-card { flex-direction: column; padding: 28px 20px; }
+    .list-bnb-image { display: none; }
+    .list-bnb-text h2 { font-size: 26px; }
+    .list-bnb-btn { width: 100%; text-align: center; }
+
+    /* Footer */
+    .footer-content { flex-direction: column; gap: 30px; }
+    .footer-container { gap: 36px; }
+
+    /* Listings page */
+    .listings-page-header { min-height: auto; }
+    .listing-page-hero { padding: 100px 20px 50px; }
+
+    /* Filter bar */
+    .filter-bar { flex-direction: column; align-items: stretch; padding: 16px; width: 92%; }
+    .range-wrapper input[type="range"] { width: 100%; }
+
+    /* Details page */
+    .details-grid { grid-template-columns: 1fr; }
+    .contact-card { position: relative; top: 0; }
+    .property-image img { height: 240px; }
+    .Amenities-section .tags span { padding: 10px 14px; }
+
+    /* Gallery — 2 columns */
+    .bnb-gallery div { grid-template-columns: repeat(2, 1fr); }
+    .bnb-pic { height: 110px; }
+
+    /* Guide page */
+    .guide-hero { min-height: 340px; padding: 90px 20px 50px; }
+    .guide-hero h1 { font-size: 28px; }
+    .guide-hero-meta { flex-direction: column; gap: 8px; }
+    .guide-tabs { top: 54px; padding: 0 12px; }
+    .guide-tab { padding: 12px 12px; font-size: 13px; }
+    .guide-section { margin: 36px auto; }
+    .guide-section-header { flex-direction: column; align-items: flex-start; }
+
+    .events-grid,
+    .restaurants-grid,
+    .nightlife-grid,
+    .attractions-grid,
+    .tours-grid { grid-template-columns: 1fr; }
 }
 
-.contact-card{
-    position: relative;
-    top: 0;
+/* =====================
+   SMALL PHONES (≤ 480px)
+===================== */
+@media (max-width: 480px) {
+    .logo { font-size: 14px; }
+    .search-container button,
+    .list-search-container button { padding: 14px 14px; font-size: 13px; }
+    .pagination button { padding: 8px 12px; font-size: 13px; }
+    .bnb-pic { height: 90px; }
+    .guide-hero-btn { padding: 12px 24px; font-size: 14px; }
+    .details-page { padding: 16px; }
 }
-}
-

@@ -1,11 +1,11 @@
 const listings = [
   {
     id: 1,
-    name: "The Manor House",
+    name: "Suits Guesthouse",
     location: "Historic Center, Carletonville",
     description: "Comfortable guesthouse with breakfast included. Features elegant rooms and beautiful garden views.",
     price: 350,
-    image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
+    image: "Assets/images/Suits Guesthouse_1.webp",
     amenities: ["wifi", "breakfast"],
     phone: "+27118001001",
     maps: "https://maps.google.com/?q=Carletonville,Gauteng,SouthAfrica",

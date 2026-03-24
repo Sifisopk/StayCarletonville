@@ -17,7 +17,7 @@ function displayFeaturedListings() {
     cardContainer.innerHTML = '';
     
     // Get first 6 listings for featured section (or all if you want)
-    const featuredListings = listings.slice(0, 6);
+    const featuredListings = listings.slice(0, 3);
     
     // Generate HTML for each listing
     featuredListings.forEach(listing => {

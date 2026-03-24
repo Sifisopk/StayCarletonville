@@ -21,6 +21,9 @@
     <section class="guide-page-header">
         <nav>
             <div class="logo"><span>Stay</span>Carletonville</div>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="listings.html">Browse stays</a></li>
@@ -66,14 +69,16 @@
     </div>
 
     <!-- === EVENTS SECTION === -->
-    <div class="guide-content-section active" id="events">
+    <div class="guide-content-section" id="events">
         <div class="guide-section">
             <div class="guide-section-header">
                 <div>
                     <h2>Upcoming Events</h2>
                     <p>Discover exciting happenings in Carletonville</p>
                 </div>
-                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="guide-view-all" data-section="events">
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
             <div class="events-grid" id="eventsGrid"></div>
         </div>
@@ -87,7 +92,9 @@
                     <h2>Best Restaurants</h2>
                     <p>Savor the flavors of Carletonville</p>
                 </div>
-                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="guide-view-all" data-section="restaurants">
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
             <div class="restaurants-grid" id="restaurantsGrid"></div>
         </div>
@@ -98,10 +105,12 @@
         <div class="guide-section">
             <div class="guide-section-header">
                 <div>
-                    <h2>Nightlife & Entertainment</h2>
+                    <h2>Nightlife &amp; Entertainment</h2>
                     <p>Where the night comes alive</p>
                 </div>
-                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="guide-view-all" data-section="nightlife">
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
             <div class="nightlife-grid" id="nightlifeGrid"></div>
         </div>
@@ -115,7 +124,9 @@
                     <h2>Top Attractions</h2>
                     <p>Must-see places in and around Carletonville</p>
                 </div>
-                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="guide-view-all" data-section="attractions">
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
             <div class="attractions-grid" id="attractionsGrid"></div>
         </div>
@@ -129,7 +140,9 @@
                     <h2>Guided Tours</h2>
                     <p>Explore Carletonville with a local expert</p>
                 </div>
-                <a href="#" class="guide-view-all">View All <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" class="guide-view-all" data-section="tours">
+                    View All <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
             <div class="tours-grid" id="toursGrid"></div>
         </div>
@@ -157,7 +170,7 @@
             <div class="footer-column">
                 <h4>Company</h4>
                 <a href="#">Privacy Policy</a>
-                <a href="#">Terms & Conditions</a>
+                <a href="#">Terms &amp; Conditions</a>
                 <a href="#">FAQ</a>
                 <a href="#">Support</a>
             </div>
