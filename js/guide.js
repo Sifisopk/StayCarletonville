@@ -57,9 +57,9 @@ const guideData = {
       maps: "https://maps.google.com/?q=Franco's+Portuguese+Restaurant+Carletonville"
     },
     {
-      name: "Bella Italia", rating: 4.6, cuisine: "Italian", price: "$$",
+      name: "Spur YellowStone", rating: 4.6, cuisine: "Italian", price: "$$",
       description: "Authentic Italian cuisine with handmade pasta and wood-fired pizzas in a cozy, family-friendly setting.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
+      image: "Assets/images/yellowstone spur.webp",
       maps: "https://maps.google.com/?q=Italian+Restaurant+Carletonville"
     },
     {

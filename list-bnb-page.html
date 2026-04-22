@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@iconscout/unicons@4.0.8/css/line.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>About StayCarletonville</title>
+</head>
+
+<body>
+
+    <!-- Nav -->
+
+    <nav>
+        <div class="logo"><span>Stay</span>Carletonville</div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Browse stays</a></li>
+            <li><a href="guide.html">Guide</a></li>
+            <li><a href="about.html">About</a></li>
+            <li id="list-btn"><a href="list-bnb-page.html">List Your B&B</a></li>
+        </ul>
+    </nav>
+    <section class="list-bnb-page">
+        <div class="list-bnb-container">
+
+            <div class="list-bnb-header">
+                <p class="list-bnb-tag">List Your Property</p>
+                <h1>List Your B&amp;B on Stay Carletonville</h1>
+                <p class="list-bnb-text">
+                    Fill in the form below and we’ll review your property details. Once everything looks good, we can
+                    add your B&amp;B to the platform.
+                </p>
+            </div>
+
+            <form action="YOUR_FORMSPREE_ENDPOINT" method="POST" class="list-bnb-form">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="businessName">B&amp;B Name</label>
+                        <input type="text" id="businessName" name="B&B Name" placeholder="Enter business name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactPerson">Contact Person</label>
+                        <input type="text" id="contactPerson" name="Contact Person"
+                            placeholder="Enter contact person name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="Phone Number" placeholder="e.g. 0712345678" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="Email Address" placeholder="Enter email address" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="address">Property Address / Area</label>
+                        <input type="text" id="address" name="Address"
+                            placeholder="Enter address or area in Carletonville" required>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="maps">Google Maps Link</label>
+                        <input type="url" id="maps" name="Google Maps Link" placeholder="Paste Google Maps URL">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Price Per Night</label>
+                        <input type="text" id="price" name="Price Per Night" placeholder="e.g. R650 / night">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imageUrl">Main Image URL</label>
+                        <input type="url" id="imageUrl" name="Image URL" placeholder="Paste image link">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="amenities">Amenities</label>
+                        <input type="text" id="amenities" name="Amenities"
+                            placeholder="e.g. WiFi, Breakfast, Parking, Air Conditioning">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="description">Property Description</label>
+                        <textarea id="description" name="Description" rows="6" placeholder="Tell us about your property"
+                            required></textarea>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="message">Additional Information</label>
+                        <textarea id="message" name="Additional Information" rows="4"
+                            placeholder="Anything else you’d like us to know?"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Property</button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>
