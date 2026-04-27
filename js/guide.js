@@ -1,38 +1,53 @@
 // ===========================
 // Guide Page Data
 // ===========================
+// Wire up the featured event hero button
+const featuredBtn = document.getElementById("featuredEventBtn");
+if (featuredBtn) {
+  featuredBtn.addEventListener("click", (e) => {
+    e.preventDefault(); // stop the href="#" from jumping
+    const ev = guideData.featuredEvent;
+    const meta = `
+      <span><i class="fa-regular fa-calendar"></i> ${ev.date}</span>
+      <span><i class="fa-solid fa-location-dot"></i> ${ev.location}</span>
+    `;
+    openModal(ev.title, meta, ev.fullDescription || ev.description);
+  });
+}
 
 const guideData = {
-  featuredEvent: {
-    title: "Carletonville Summer Festival",
-    date: "December 15–17, 2024",
-    location: "Central Park, Carletonville",
-    image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
-  },
+featuredEvent: {
+  title: "Carletonville Summer Festival",
+  date: "December 15–17, 2024",
+  location: "Central Park, Carletonville",
+  image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
+  description: "The biggest annual celebration in Carletonville.",
+  fullDescription: "Join thousands of locals and visitors for three days of live music, food stalls, craft markets, and family entertainment at Central Park. Gates open at 10AM daily. Tickets R100 adults, R50 children. Free parking available at the Sports Ground with shuttle service."
+},
 
   events: [
     {
       date: "Dec 20", venue: "City Hall", title: "Live Music Night",
       description: "Experience an unforgettable evening of live performances from local and international artists under the stars.",
-      fullDescription: "Join us for an extraordinary night of live music at City Hall. Featuring both local talent and international artists, this event promises a memorable evening. Doors open at 6PM, performances from 7PM–11PM. Tickets available at the door.",
+      fullDescription: "Join us for an extraordinary night of live music at City Hall. Featuring both local talent and international artists, this event promises a memorable evening. Doors open at 6PM, performances from 7PM to 11PM. Tickets available at the door.",
       image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
     },
     {
       date: "Dec 22", venue: "Art Gallery", title: "Local Art Exhibition",
       description: "Showcase of talented local artists featuring paintings, sculptures, and mixed media installations.",
-      fullDescription: "A curated showcase of over 30 local artists displaying paintings, sculptures, photography, and mixed media works. The exhibition runs 10AM–6PM daily. Entry is free and open to the public. Meet the artists at the opening night on Dec 22 from 6PM–9PM.",
+      fullDescription: "A curated showcase of over 30 local artists displaying paintings, sculptures, photography, and mixed media works. The exhibition runs 10AM to 6PM daily. Entry is free and open to the public. Meet the artists at the opening night on Dec 22 from 6PM to 9PM.",
       image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
     },
     {
       date: "Dec 25", venue: "Market Square", title: "Food & Wine Festival",
       description: "Taste the finest local cuisine and wines from the region's best restaurants and vineyards.",
-      fullDescription: "Celebrate the holidays at Carletonville's biggest food event! Over 20 restaurants and 8 local vineyards will be presenting their finest offerings. Live entertainment, cooking demos, and children's activities throughout the day. Event runs 11AM–8PM.",
+      fullDescription: "Celebrate the holidays at Carletonville's biggest food event! Over 20 restaurants and 8 local vineyards will be presenting their finest offerings. Live entertainment, cooking demos, and children's activities throughout the day. Event runs 11AM to 8PM.",
       image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
     },
     {
       date: "Dec 28", venue: "Community Centre", title: "Heritage Cultural Evening",
       description: "Celebrate the rich cultural heritage of the West Rand with traditional music, dance, and food.",
-      fullDescription: "A vibrant evening celebrating the diverse cultures of the West Rand. Featuring traditional dance performances, live music, and a spread of authentic local cuisine. Family-friendly, running from 5PM–10PM. Tickets R80 adults, R40 children.",
+      fullDescription: "A vibrant evening celebrating the diverse cultures of the West Rand. Featuring traditional dance performances, live music, and a spread of authentic local cuisine. Family-friendly, running from 5PM to 10PM. Tickets R80 adults, R40 children.",
       image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
     },
     {
@@ -44,7 +59,7 @@ const guideData = {
     {
       date: "Jan 10", venue: "Town Hall", title: "Business Networking Breakfast",
       description: "Connect with local entrepreneurs and business leaders over a hearty breakfast.",
-      fullDescription: "An exclusive networking event for Carletonville's business community. Guest speakers, panel discussions on local economic growth, and open networking. Breakfast provided. Starts 7:30AM–10AM. RSVP required — limited seats available.",
+      fullDescription: "An exclusive networking event for Carletonville's business community. Guest speakers, panel discussions on local economic growth, and open networking. Breakfast provided. Starts 7:30AM to 10AM. RSVP required — limited seats available.",
       image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
     }
   ],
@@ -183,6 +198,8 @@ function renderEvents(all) {
       openModal(ev.title, meta, ev.fullDescription || ev.description);
     });
   });
+
+
 }
 
 // ===========================
