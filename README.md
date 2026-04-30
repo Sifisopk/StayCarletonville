@@ -5,17 +5,19 @@ A modern web platform for discovering Bed & Breakfasts in Carletonville, along w
 Built as a portfolio project to solve a real-world problem:
 making it easier to find reliable, local accommodation in one place.
 
-🌐 Live Demo
+🌐 Live
 
-(Add your Netlify link here once deployed)
-👉 https://your-site.netlify.app
+👉 https://staycarletonville.netlify.app/
 
 🚀 Features
+
 🏠 B&B Listings
 View all available accommodations in Carletonville
 Clean card-based layout
 Price, location, and amenities displayed
 Pagination system for browsing listings
+
+
 🔍 Search & Filter
 Search listings by name or keyword
 Dynamic filtering using JavaScript
@@ -24,6 +26,8 @@ Individual page for each B&B
 Image, description, pricing
 Amenities section
 Photo gallery with lightbox
+
+
 📞 Contact Options
 Call property
 WhatsApp integration
@@ -34,6 +38,8 @@ Restaurants
 Nightlife
 Attractions
 Tours
+
+
 📩 List Your B&B
 Form for property owners to submit listings
 Integrated with Formspree (email handling)
@@ -45,27 +51,7 @@ Font Awesome (icons)
 Google Fonts
 Formspree (forms)
 Netlify (hosting)
-📁 Project Structure
-/project-root
-│
-├── index.html
-├── listings.html
-├── details.html
-├── explore.html
-│
-├── /css
-│   └── style.css
-│
-├── /js
-│   ├── data.js
-│   ├── listings.js
-│   ├── details.js
-│   └── guide.js
-│
-├── /Assets
-│   └── images/
-│
-└── README.md
+
 ⚙️ How It Works
 Listings are stored in a JavaScript array (data.js)
 JavaScript dynamically renders:
@@ -73,6 +59,7 @@ Listing cards
 Detail pages
 Explore sections
 URL parameters (?id=...) are used to load individual B&B pages
+
 📌 Future Improvements
 🔗 Connect to a real database (Supabase / Firebase)
 🧑‍💼 Admin dashboard for adding/editing listings
