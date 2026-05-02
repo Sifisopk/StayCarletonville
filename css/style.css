@@ -1288,6 +1288,160 @@ footer p {
 }
  
 .lightbox-close:hover { color: #fff; }
+
+ /* ===== Rooms Section ===== */
+        .rooms-section {
+            margin-top: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 24px;
+            border-radius: 10px;
+        }
+ 
+        .rooms-section h3 {
+            font-family: "Archivo Black", sans-serif;
+            font-size: 18px;
+            color: #111827;
+            margin-bottom: 18px;
+        }
+ 
+        /* Tab buttons */
+        .room-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+ 
+        .room-tab-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            min-width: 110px;
+        }
+ 
+        .room-tab-btn .tab-beds {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111827;
+        }
+ 
+        .room-tab-btn .tab-price {
+            font-size: 12px;
+            color: #6b7280;
+        }
+ 
+        .room-tab-btn.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+ 
+        .room-tab-btn.active .tab-beds { color: #2563eb; }
+        .room-tab-btn:hover:not(.active) { border-color: #9ca3af; }
+ 
+        /* Room panels */
+        .room-panel { display: none; animation: roomFade 0.25s ease; }
+        .room-panel.active { display: block; }
+ 
+        @keyframes roomFade {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+ 
+        .room-panel-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+ 
+        .room-panel-header h4 {
+            font-family: "Archivo Black", sans-serif;
+            font-size: 17px;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+ 
+        .room-panel-header p {
+            font-size: 13.5px;
+            color: #6b7280;
+            line-height: 1.55;
+            max-width: 460px;
+            padding: 0;
+        }
+ 
+        .room-price-badge {
+            background: #111827;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+ 
+        .room-price-badge small {
+            font-weight: 400;
+            font-size: 12px;
+        }
+ 
+        .room-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+ 
+        .room-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #374151;
+            background: #f3f4f6;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+ 
+        /* Room image grid */
+        .room-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+ 
+        .room-gallery img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+ 
+        .room-gallery img:hover { transform: scale(1.04); }
+ 
+
+ 
+        .details-contact-sub {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+ 
+     
  
 /* =====================
    GUIDE PAGE

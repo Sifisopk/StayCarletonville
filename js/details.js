@@ -2,94 +2,80 @@ const params = new URLSearchParams(window.location.search);
 const listingId = params.get("id");
 const listing = listings.find(item => item.id == listingId);
 
-// ✅ UNCOMMENT THIS SECTION - Populate the property information
 if (listing) {
-    // Update main image
+
+    // Main image
     const mainImage = document.querySelector(".property-image img");
     if (mainImage) mainImage.src = listing.image;
 
-    // Update title
+    // Title
     const title = document.querySelector(".property-title");
     if (title) title.textContent = listing.name;
 
-    // Update location
+    // Location
     const location = document.querySelector(".property-location");
     if (location) location.textContent = listing.location;
 
-    // Update price
-    const price = document.querySelector(".property-price");
-    if (price) price.textContent = `R${listing.price} per night`;
+    // Price — show lowest room price if rooms exist
+    const priceEl = document.querySelector(".property-price");
+    if (priceEl) {
+        if (listing.rooms && listing.rooms.length > 0) {
+            const lowest = Math.min(...listing.rooms.map(r => r.price));
+            priceEl.textContent = `From R${lowest} per night`;
+        } else {
+            priceEl.textContent = `R${listing.price} per night`;
+        }
+    }
 
-    // Update description
+    // Description
     const description = document.querySelector(".about-section p");
     if (description) description.textContent = listing.description;
 
-    // Update stats (if you have this data)
+    // Rating
     const ratingSpan = document.querySelector(".property-stats span:first-child");
     if (ratingSpan && listing.rating) {
         ratingSpan.textContent = `⭐ ${listing.rating}`;
     }
 
-    // Update amenities based on the listing data
+    // Amenities
     const amenitiesContainer = document.querySelector(".Amenities-section .tags");
     if (amenitiesContainer && listing.amenities) {
-        // Clear existing amenities
         amenitiesContainer.innerHTML = "";
-
-        // Map amenity names to icons
         const amenityIcons = {
-            wifi: { name: "WiFi", icon: "fa-wifi" },
-            breakfast: { name: "Breakfast", icon: "fa-mug-saucer" },
-            parking: { name: "Free Parking", icon: "fa-car" }
+            wifi:      { name: "WiFi",         icon: "fa-wifi" },
+            breakfast: { name: "Breakfast",    icon: "fa-mug-saucer" },
+            parking:   { name: "Free Parking", icon: "fa-car" }
         };
-
-        // Add amenities from the listing data
         listing.amenities.forEach(amenity => {
-            if (amenityIcons[amenity]) {
+            const key = amenity.trim().toLowerCase();
+            if (amenityIcons[key]) {
                 const span = document.createElement("span");
-                span.innerHTML = `${amenityIcons[amenity].name} <i class="fa-solid ${amenityIcons[amenity].icon}"></i>`;
+                span.innerHTML = `${amenityIcons[key].name} <i class="fa-solid ${amenityIcons[key].icon}"></i>`;
                 amenitiesContainer.appendChild(span);
             }
         });
     }
 
-    // Update contact buttons
+    // Contact buttons
     const contactButtons = document.querySelectorAll(".contact-btn");
-
     if (contactButtons.length >= 3) {
-        // Call button
         if (listing.phone) {
             contactButtons[0].href = `tel:${listing.phone}`;
-        }
-
-        // WhatsApp button
-        if (listing.phone) {
             const waNumber = listing.phone.replace(/\D/g, '');
             contactButtons[1].href = `https://wa.me/${waNumber}`;
             contactButtons[1].target = "_blank";
         }
-
-        // Maps button
         if (listing.maps) {
             contactButtons[2].href = listing.maps;
             contactButtons[2].target = "_blank";
         }
     }
 
-    // Update gallery images (if you want to use multiple images)
+    // Gallery
     const galleryContainer = document.querySelector(".bnb-gallery div");
     if (galleryContainer) {
-        // Clear existing gallery
         galleryContainer.innerHTML = "";
-
-        // If listing has a gallery array, use it; otherwise, use the main image for all
-        const galleryImages = listing.gallery || [
-            listing.image,
-            listing.image,
-            listing.image,
-            listing.image
-        ];
-
+        const galleryImages = listing.gallery || [listing.image, listing.image, listing.image, listing.image];
         galleryImages.forEach(src => {
             const img = document.createElement("img");
             img.className = "bnb-pic";
@@ -99,42 +85,136 @@ if (listing) {
             galleryContainer.appendChild(img);
         });
     }
+
+    // Rooms
+    renderRooms(listing);
+
 } else {
     console.log("No listing found with ID:", listingId);
 }
 
-// Lightbox functionality
+// =====================
+// Render Rooms
+// =====================
+function renderRooms(listing) {
+    const tabsContainer   = document.getElementById("roomTabs");
+    const panelsContainer = document.getElementById("roomPanels");
+    if (!tabsContainer || !panelsContainer) return;
+
+    const rooms = listing.rooms;
+
+    // Hide the section if no rooms defined
+    if (!rooms || rooms.length === 0) {
+        const section = document.querySelector(".rooms-section");
+        if (section) section.style.display = "none";
+        return;
+    }
+
+    rooms.forEach((room, index) => {
+
+        // --- TAB BUTTON ---
+        const btn = document.createElement("button");
+        btn.className = "room-tab-btn" + (index === 0 ? " active" : "");
+        btn.dataset.roomIndex = index;
+        btn.innerHTML = `
+            <span class="tab-beds">🛏 ${room.beds} Bed${room.beds > 1 ? "s" : ""}</span>
+            <span class="tab-price">R${room.price}/night</span>
+        `;
+        btn.addEventListener("click", () => switchRoom(index));
+        tabsContainer.appendChild(btn);
+
+        // --- PANEL ---
+        const panel = document.createElement("div");
+        panel.className = "room-panel" + (index === 0 ? " active" : "");
+        panel.id = `room-panel-${index}`;
+
+        const galleryHTML = room.images.map(src =>
+            `<img src="${src}" alt="${room.name}" onclick="openRoomLightbox('${src}')">`
+        ).join("");
+
+        panel.innerHTML = `
+            <div class="room-panel-header">
+                <div>
+                    <h4>${room.name}</h4>
+                    <p>${room.description}</p>
+                </div>
+                <span class="room-price-badge">R${room.price}<small>/night</small></span>
+            </div>
+            <div class="room-meta">
+                <span><i class="fa-solid fa-bed"></i> ${room.beds} Bed${room.beds > 1 ? "s" : ""}</span>
+                <span><i class="fa-solid fa-user-group"></i> Up to ${room.guests} guest${room.guests > 1 ? "s" : ""}</span>
+            </div>
+            <div class="room-gallery">${galleryHTML}</div>
+        `;
+        panelsContainer.appendChild(panel);
+    });
+}
+
+function switchRoom(index) {
+    document.querySelectorAll(".room-tab-btn").forEach((btn, i) => {
+        btn.classList.toggle("active", i === index);
+    });
+    document.querySelectorAll(".room-panel").forEach((panel, i) => {
+        panel.classList.toggle("active", i === index);
+    });
+}
+
+function openRoomLightbox(src) {
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    if (lightbox && lightboxImage) {
+        lightboxImage.src = src;
+        lightbox.style.display = "flex";
+        document.body.style.overflow = "hidden";
+    }
+}
+
+// =====================
+// Gallery Lightbox
+// =====================
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxClose = document.getElementById("lightboxClose");
 
-// Event delegation for gallery images
 const gallery = document.querySelector(".bnb-gallery");
 if (gallery && lightbox && lightboxImage) {
     gallery.addEventListener("click", (e) => {
         if (e.target.classList.contains("bnb-pic")) {
             lightbox.style.display = "flex";
             lightboxImage.src = e.target.src;
+            document.body.style.overflow = "hidden";
         }
     });
 }
 
-// Lightbox close handlers
 if (lightboxClose && lightbox) {
     lightboxClose.addEventListener("click", () => {
         lightbox.style.display = "none";
+        document.body.style.overflow = "";
     });
-
     lightbox.addEventListener("click", (e) => {
         if (e.target === lightbox) {
             lightbox.style.display = "none";
+            document.body.style.overflow = "";
         }
     });
 }
 
-// Close with Escape key
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && lightbox && lightbox.style.display === "flex") {
         lightbox.style.display = "none";
+        document.body.style.overflow = "";
     }
 });
+
+// =====================
+// Mobile Nav
+// =====================
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks  = document.querySelector(".nav-links");
+if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+    navLinks.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+}
