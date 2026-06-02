@@ -11,40 +11,49 @@ if (featuredBtn) {
       <span><i class="fa-regular fa-calendar"></i> ${ev.date}</span>
       <span><i class="fa-solid fa-location-dot"></i> ${ev.location}</span>
     `;
-    openModal(ev.title, meta, ev.fullDescription || ev.description);
+    openModal(ev.title, meta, ev.fullDescription || ev.description, {
+      url: ev.link || '#',
+      text: 'Get Tickets'
+    });
   });
 }
 
 const guideData = {
 featuredEvent: {
-  title: "Carletonville Summer Festival",
-  date: "December 15–17, 2024",
-  location: "Central Park, Carletonville",
-  image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
+  title: "Mojolo o healthy In Marquee Experience 2nd",
+  date: "August 1–2, 2026",
+  location: "Carletonville Mall",
+  image: "Assets/images/mjolo_event_august_2026.png",
   description: "The biggest annual celebration in Carletonville.",
-  fullDescription: "Join thousands of locals and visitors for three days of live music, food stalls, craft markets, and family entertainment at Central Park. Gates open at 10AM daily. Tickets R100 adults, R50 children. Free parking available at the Sports Ground with shuttle service."
+  fullDescription: "Get ready for an unforgettable weekend at Mojolo o Healthy In Marquee Experience, the ultimate Soul & RnB event of 2026! Taking place in the vibrant city of Carletonville, South Africa, this exclusive gathering promises a perfect blend of soulful rhythms, uplifting vibes, and an atmosphere filled with beautiful people who know how to enjoy life. Tickets start at R 150.00",
+  link: "https://computicket-boxoffice.com/e/mojolo-o-healthy-in-marquee-experience-2nd-WfOHg3"
 },
-
+// ===========================
+// Events
+// ===========================
   events: [
     {
-      date: "Dec 20", venue: "City Hall", title: "Live Music Night",
-      description: "Experience an unforgettable evening of live performances from local and international artists under the stars.",
-      fullDescription: "Join us for an extraordinary night of live music at City Hall. Featuring both local talent and international artists, this event promises a memorable evening. Doors open at 6PM, performances from 7PM to 11PM. Tickets available at the door.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
+      date: "Sep 05", venue: "Wedela Community Park", title: "Wedela Spring Family Fun Day",
+      description: "Celebrate the arrival of spring with the entire family at the Wedela Spring Family Fun Day.",
+      fullDescription: "Celebrate the arrival of spring with the entire family at the Wedela Spring Family Fun Day, happening on September 5, 2026, at the beautiful Wedela Community Park Madala. From 10:00 AM to 6:00 PM, join us for a day packed with joyful activities, delicious food, and unforgettable memories in a vibrant community setting. Tickets start at R 30.00",
+      image: "Assets/images/wedela_sep_2026.jpg",
+      link: "https://computicket-boxoffice.com/e/wedela-spring-family-fun-day-aK9LFK"
     },
     {
       date: "Dec 22", venue: "Art Gallery", title: "Local Art Exhibition",
-      description: "Showcase of talented local artists featuring paintings, sculptures, and mixed media installations.",
-      fullDescription: "A curated showcase of over 30 local artists displaying paintings, sculptures, photography, and mixed media works. The exhibition runs 10AM to 6PM daily. Entry is free and open to the public. Meet the artists at the opening night on Dec 22 from 6PM to 9PM.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
+      description: "While the temperature drops , They turning up the heat. DON ENTERTAINMENT PRESENTS DUO NIGHT ",
+      fullDescription: "📍 Vintage Car Wash, Khutsong South : 04 July 2026 : 🎟 R100 General | R150 At The Gate | R250 VIP : 🍾 R100 Coolerbox (Food & drinks sold inside) :  Secure your tickets early. Let’s make it an unforgettable winter night",
+      image: "Assets/images/duo_night.jpg",
+     link: "https://web.facebook.com/groups/478355076736131/?_rdc=1&_rdr#"
     },
-    {
+   /* {
       date: "Dec 25", venue: "Market Square", title: "Food & Wine Festival",
       description: "Taste the finest local cuisine and wines from the region's best restaurants and vineyards.",
       fullDescription: "Celebrate the holidays at Carletonville's biggest food event! Over 20 restaurants and 8 local vineyards will be presenting their finest offerings. Live entertainment, cooking demos, and children's activities throughout the day. Event runs 11AM to 8PM.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
-    },
-    {
+      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
+      link: "https://www.google.com/search?q=Food+%26+Wine+Festival+Carletonville"
+    }
+   {
       date: "Dec 28", venue: "Community Centre", title: "Heritage Cultural Evening",
       description: "Celebrate the rich cultural heritage of the West Rand with traditional music, dance, and food.",
       fullDescription: "A vibrant evening celebrating the diverse cultures of the West Rand. Featuring traditional dance performances, live music, and a spread of authentic local cuisine. Family-friendly, running from 5PM to 10PM. Tickets R80 adults, R40 children.",
@@ -61,59 +70,87 @@ featuredEvent: {
       description: "Connect with local entrepreneurs and business leaders over a hearty breakfast.",
       fullDescription: "An exclusive networking event for Carletonville's business community. Guest speakers, panel discussions on local economic growth, and open networking. Breakfast provided. Starts 7:30AM to 10AM. RSVP required — limited seats available.",
       image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg"
-    }
+    }*/
   ],
 
+// ===========================
+// resturaants
+// ===========================
   restaurants: [
     {
       name: "Franco's Portuguese Restaurant", rating: 4.8, cuisine: "Fine Dining", price: "$$$",
-      description: "Fine dining experience with premium steaks and an extensive wine selection in an elegant atmosphere.",
+      description: "Indulge in a mouthwatering culinary journey at Franco's Portuguese Restaurant in Carletonville, a local favorite celebrated for its authentic, hearty flavours and generous portions.",
       image: "Assets/images/Franco-S-Portuguese-Restaurant_1.webp",
-      maps: "https://maps.google.com/?q=Franco's+Portuguese+Restaurant+Carletonville"
+      maps: "https://maps.app.goo.gl/CMb1kZK8h3WHwPtj7"
     },
     {
       name: "Spur YellowStone", rating: 4.6, cuisine: "Italian", price: "$$",
-      description: "Authentic Italian cuisine with handmade pasta and wood-fired pizzas in a cozy, family-friendly setting.",
-      image: "Assets/images/yellowstone spur.webp",
-      maps: "https://maps.google.com/?q=Italian+Restaurant+Carletonville"
+      description: "Treat the whole family to a classic South African dining experience at the Yellowstone Spur Steak Ranch, Famed for its sizzling steaks, legendary ribs, and kid-friendly play area.",
+      image: "Assets/images/yellowstone spur 2.webp",
+      maps: "https://maps.app.goo.gl/a7QSDDPymKjFAjtb9"
     },
     {
-      name: "Sakura Sushi Bar", rating: 4.9, cuisine: "Japanese", price: "$$",
-      description: "Fresh sushi and sashimi prepared by master chefs, offering an authentic Japanese dining experience.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
-      maps: "https://maps.google.com/?q=Sushi+Bar+Carletonville"
+      name: "Carletonville Wimpy", rating: 4.9, cuisine: "Japanese", price: "$$",
+      description: "Start your morning right at Wimpy Carletonville, Known for its iconic all-day breakfasts, legendary coffees, and classic burgers.",
+      image: "Assets/images/wimpy.webp",
+      maps: "https://maps.app.goo.gl/WtQBL5AsgTnt3s9Q9"
     },
     {
-      name: "The Braai House", rating: 4.7, cuisine: "South African", price: "$$",
-      description: "Traditional South African braai in a warm outdoor setting. Known for boerewors and perfectly grilled meats.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
-      maps: "https://maps.google.com/?q=Braai+Restaurant+Carletonville"
+      name: "Timez Cafe", rating: 4.7, cuisine: "South African", price: "$$",
+      description: "Experience the ultimate social hotspot at Suits Timez Café, an all-in-one restaurant, bar, cocktail, and sports lounge, it delivers a trendy and energetic atmosphere perfect for a night out with friends or catching live sport on the screens",
+      image: "Assets/images/timez_cafe.jpg",
+      maps: "https://maps.app.goo.gl/rNMraUjXn2Am26hJ9"
     },
     {
-      name: "Cape Town Fish Market", rating: 4.5, cuisine: "Seafood", price: "$$$",
-      description: "Fresh catch of the day, line fish, calamari, and prawns. The best seafood experience inland.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
-      maps: "https://maps.google.com/?q=Fish+Market+Carletonville"
+      name: "Snowy Lane", rating: 4.5, cuisine: "Seafood", price: "$$$",
+      description: "Take a nostalgic trip down memory lane at Snowy Lane, Renowned for its comforting, home-cooked feel, this hidden gem serves up delicious made-from-scratch pizzas, hearty burgers, and comforting lasagnas crafted from closely guarded family recipes.",
+      image: "Assets/images/snowy_lane.jpg",
+      maps: "https://maps.app.goo.gl/6s8pUKEWb2U9SCE99"
     },
     {
-      name: "Mamma's Kitchen", rating: 4.4, cuisine: "Home Cooking", price: "$",
-      description: "Hearty home-cooked meals in a welcoming family atmosphere. Daily specials and Sunday roasts.",
-      image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg",
-      maps: "https://maps.google.com/?q=Mamma's+Kitchen+Carletonville"
+      name: "Fishaways Carletonville", rating: 4.4, cuisine: "Home Cooking", price: "$",
+      description: " This popular fast-casual spot serves up everything from classic, golden-fried hake and chips to freshly prepared sushi, grilled platters.",
+      image: "Assets/images/fishaways.jpg",
+      maps: "https://maps.app.goo.gl/ui3GSfKYaaNePZa2A"
     }
   ],
 
+  // ===========================
+// night life
+// ===========================
+
   nightlife: [
-    { name: "The Velvet Lounge", vibe: "Chill", vibeClass: "vibe-chill", description: "Sophisticated cocktail bar with live jazz music", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" },
-    { name: "Pulse Nightclub", vibe: "Party", vibeClass: "vibe-party", description: "High-energy dance club with top DJs", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" },
-    { name: "Brewmaster's Pub", vibe: "Chill", vibeClass: "vibe-chill", description: "Craft beer haven with local brews", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" },
-    { name: "Skyline Rooftop", vibe: "Chill", vibeClass: "vibe-chill", description: "Panoramic views with signature cocktails", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" }
+    { name: "Suits Bar", vibe: "Party", vibeClass: "vibe-chill", 
+      description: "High-energy dance club to let loose and enjoy", 
+      image: "Assets/images/suites_bar.webp" },
+
+    { name: "Peru Lifestyle Lounge", vibe: "Chill", vibeClass: "vibe-party", 
+      description: "Step into our vibrant lounge, pour a drink, and vibe to the best local DJs in town.", 
+      image: "Assets/images/peru.jpg" },
+
+    { name: "The Workshop Pub & Grill", vibe: "Chill", vibeClass: "vibe-chill", 
+      description: "grab a beer and enjoy some local food", 
+      image: "Assets/images/Workshop_Pub.jpg" }
   ],
 
   attractions: [
-    { name: "Carletonville Mine Museum", tag: "History", description: "Explore the rich gold-mining heritage of the West Rand through interactive exhibits and underground tours.", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" },
-    { name: "Boskop Dam Nature Reserve", tag: "Nature", description: "A tranquil nature reserve perfect for bird watching, fishing, and picnics with the whole family.", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" },
-    { name: "West Rand Heritage Trail", tag: "Culture", description: "Walk the historic trail that tells the story of the communities that shaped Carletonville.", image: "Assets/images/breathtaking-shot-colorful-houses-blue-sky.jpg" }
+    { name: "Johannesburg Skydiving Club", tag: "Skydiving", 
+      description: "Experience the ultimate thrill at the Johannesburg Skydiving Club, South Africa's premier drop zone offering unforgettable tandem jumps from 11,000 feet.", 
+      image: "Assets/images/Skydiving_Club.jpg",
+      link: "https://jsc.co.za/"
+    },
+
+    { name: "Goldfields west golf club", tag: "Nature", 
+      description: "Escape to the serene bushveld at Goldfields West Private Golf Club, a stunning 18-hole parklands course where players share fairways with roaming zebra, springbok, and impala.", 
+      image: "Assets/images/golf_club.jpg",
+      link: "https://goldfieldswest.co.za/"
+    },
+
+    { name: "Abe Bailey Nature Reserve", tag: "Nature", 
+      description: "Over 280 species of birds have been recorded in the reserve, including common sightings of the African fish eagle and the summer-visiting osprey. ", 
+      image: "Assets/images/abe_bailey.webp",
+      link: "https://maps.app.goo.gl/Ctb2XBaGpHZGLDKt5"
+    }
   ],
 
   tours: [
@@ -144,6 +181,7 @@ function injectModal() {
       <div id="modalMeta" style="display:flex;gap:14px;font-size:13px;color:#2563eb;font-weight:600;margin-bottom:12px;flex-wrap:wrap;"></div>
       <h2 id="modalTitle" style="font-family:'Archivo Black',sans-serif;font-size:22px;color:#111827;margin-bottom:16px;"></h2>
       <p id="modalDescription" style="font-size:14.5px;color:#4b5563;line-height:1.7;"></p>
+      <a id="modalCta" href="#" target="_blank" style="display:none;margin-top:18px;padding:12px 18px;background:#111827;color:#fff;border-radius:12px;text-decoration:none;font-weight:700;">Learn More <i class='fa-solid fa-arrow-right' style='margin-left:8px;'></i></a>
     </div>
   `;
   document.body.appendChild(modal);
@@ -152,10 +190,21 @@ function injectModal() {
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 }
 
-function openModal(title, meta, description) {
+function openModal(title, meta, description, cta) {
   document.getElementById("modalTitle").textContent = title;
   document.getElementById("modalMeta").innerHTML = meta;
   document.getElementById("modalDescription").textContent = description;
+
+  const modalCta = document.getElementById("modalCta");
+  if (cta && cta.url) {
+    modalCta.href = cta.url;
+    modalCta.textContent = cta.text || "Learn More";
+    modalCta.innerHTML += ` <i class='fa-solid fa-arrow-right' style='margin-left:8px;'></i>`;
+    modalCta.style.display = "inline-flex";
+  } else {
+    modalCta.style.display = "none";
+  }
+
   const modal = document.getElementById("guideModal");
   modal.style.display = "flex";
   document.body.style.overflow = "hidden";
@@ -195,7 +244,10 @@ function renderEvents(all) {
     btn.addEventListener("click", () => {
       const ev = items[parseInt(btn.dataset.index)];
       const meta = `<span><i class="fa-regular fa-calendar"></i> ${ev.date}</span><span><i class="fa-solid fa-location-dot"></i> ${ev.venue}</span>`;
-      openModal(ev.title, meta, ev.fullDescription || ev.description);
+      openModal(ev.title, meta, ev.fullDescription || ev.description, {
+        url: ev.link || '#',
+        text: 'Get Tickets'
+      });
     });
   });
 
@@ -273,6 +325,9 @@ function renderAttractions(all) {
         <h3>${a.name}</h3>
         <p>${a.description}</p>
         <span class="attraction-tag">${a.tag}</span>
+        <a href="${a.link || '#'}" target="_blank" class="attraction-link-btn">
+          Visit <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
     </div>
   `).join("");

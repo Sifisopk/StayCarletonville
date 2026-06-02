@@ -1,7 +1,15 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
     displayFeaturedListings();
+    setFeaturedEventBackground();
 });
+
+function setFeaturedEventBackground() {
+    const indexGuideContent = document.querySelector('.index-guide-content');
+    if (indexGuideContent && guideData && guideData.featuredEvent && guideData.featuredEvent.image) {
+        indexGuideContent.style.backgroundImage = `url('${guideData.featuredEvent.image}')`;
+    }
+}
 
 function displayFeaturedListings() {
     // Get the container where listings should go
