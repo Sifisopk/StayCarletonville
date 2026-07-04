@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Owner Dashboard - Stay Carletonville</title>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="Assets/images/logo.svg" width="200px" alt="Logo">
+        </div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Browse stays</a></li>
+            <li><a href="guide.html">Guide</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-wrap">
+        <div class="dashboard-card">
+            <div class="dashboard-top">
+                <div>
+                    <h1>My Listings</h1>
+                    <p id="welcomeText"></p>
+                </div>
+                <div class="dashboard-actions">
+                    <a href="add-listing.html" class="dashboard-btn dashboard-btn-primary">+ Add New Listing</a>
+                    <a href="admin.html" class="dashboard-btn dashboard-btn-secondary">⚙ Admin Panel</a>
+                    <button class="dashboard-btn dashboard-btn-secondary" onclick="logOut()">Log Out</button>
+                </div>
+            </div>
+
+            <div id="ownerListings">
+                <p class="dashboard-empty">Loading your listings...</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/nav-auth.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

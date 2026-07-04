@@ -1,3 +1,9 @@
+// =========================================================
+// listings.js — now loads approved listings from Supabase
+// Falls back to the static `listings` array (data.js) if the
+// Supabase fetch fails, so the site never shows a blank page.
+// =========================================================
+
 const container = document.getElementById("listingsContainer");
 
 const sortPrice = document.getElementById("sortPrice");
@@ -7,10 +13,31 @@ const resetFilters = document.getElementById("resetFilters");
 const checkboxes = document.querySelectorAll(".checkbox-group input[type='checkbox']");
 const searchInput = document.querySelector(".list-search-container input");
 
-
-
 const listingsPerPage = 6;
 let currentPage = 1;
+let allListings = []; // populated from Supabase (or data.js fallback)
+
+// ============
+// Load data
+// ============
+async function loadListingsFromSupabase() {
+    try {
+        const { data, error } = await supabase
+            .from("listings")
+            .select("*")
+            .eq("status", "approved")
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        allListings = data || [];
+    } catch (err) {
+        console.warn("Could not load listings from Supabase, using local data.js fallback:", err.message);
+        allListings = typeof listings !== "undefined" ? listings : [];
+    }
+
+    applyFilters();
+}
 
 // ============
 // Filter logic
@@ -24,17 +51,17 @@ function getFilteredListings() {
         .filter(cb => cb.checked)
         .map(cb => cb.value);
 
-    let filtered = listings.filter(listing => {
+    let filtered = allListings.filter(listing => {
 
         const withinPrice = listing.price <= maxPrice;
 
         const hasAmenities = checkedAmenities.length === 0 ||
-            checkedAmenities.every(a => listing.amenities.includes(a));
+            checkedAmenities.every(a => (listing.amenities || []).includes(a));
 
         const matchesSearch = searchTerm === "" ||
             listing.name.toLowerCase().includes(searchTerm) ||
             listing.location.toLowerCase().includes(searchTerm) ||
-            listing.description.toLowerCase().includes(searchTerm);
+            (listing.description || "").toLowerCase().includes(searchTerm);
 
         return withinPrice && hasAmenities && matchesSearch;
     });
@@ -78,7 +105,7 @@ function displayListings(page, filteredListings) {
             <p><i class="fa-solid fa-location-dot"></i> ${listing.location}</p>
             <p>${listing.description}</p>
             <div class="tags">
-                ${listing.amenities.map(a => `<span>${a}</span>`).join("")}
+                ${(listing.amenities || []).map(a => `<span>${a}</span>`).join("")}
             </div>
             <div class="listing-view">
                 <p class="price-tag"><strong>R${listing.price}</strong>/night</p>
@@ -147,7 +174,6 @@ searchInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") applyFilters();
 });
 
-
 resetFilters.addEventListener("click", () => {
     sortPrice.value = "default";
     priceRange.value = 2000;
@@ -155,8 +181,8 @@ resetFilters.addEventListener("click", () => {
     checkboxes.forEach(cb => cb.checked = false);
     searchInput.value = "";
     currentPage = 1;
-    displayListings(1, listings);
+    displayListings(1, allListings);
 });
 
-// Initial load
-displayListings(currentPage, listings);
+// Initial load — from Supabase
+loadListingsFromSupabase();

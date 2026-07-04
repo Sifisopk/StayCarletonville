@@ -1,7 +1,34 @@
+// =========================================================
+// details.js — loads the listing from Supabase (by id), falling
+// back to the static `listings` array (data.js) if needed.
+// =========================================================
+
 const params = new URLSearchParams(window.location.search);
 const listingId = params.get("id");
-const listing = listings.find(item => item.id == listingId);
 
+async function loadListing() {
+    let listing = null;
+
+    try {
+        const { data, error } = await supabase
+            .from("listings")
+            .select("*, rooms(*)")
+            .eq("id", listingId)
+            .single();
+
+        if (error) throw error;
+        listing = data;
+    } catch (err) {
+        console.warn("Could not load listing from Supabase, using local data.js fallback:", err.message);
+        listing = (typeof listings !== "undefined")
+            ? listings.find(item => item.id == listingId)
+            : null;
+    }
+
+    renderListing(listing);
+}
+
+function renderListing(listing) {
 if (listing) {
 
     // Main image
@@ -92,6 +119,9 @@ if (listing) {
 } else {
     console.log("No listing found with ID:", listingId);
 }
+}
+
+loadListing();
 
 // =====================
 // Render Rooms

@@ -55,8 +55,8 @@
     <!-- Filter Bar -->
     <div class="filter-bar">
         <div class="filter-group">
-            <label>Sort by Price</label>
-            <select id="sortPrice">
+            <label for="sortPrice">Sort by Price</label>
+            <select id="sortPrice" title="Sort by Price">
                 <option value="default">Default</option>
                 <option value="asc">Price: Low to High</option>
                 <option value="desc">Price: High to Low</option>
@@ -64,9 +64,9 @@
         </div>
 
         <div class="filter-group">
-            <label>Max Price</label>
+            <label for="priceRange">Max Price</label>
             <div class="range-wrapper">
-                <input type="range" id="priceRange" min="0" max="2000" step="50" value="2000">
+                <input type="range" id="priceRange" min="0" max="2000" step="50" value="2000" title="Maximum price">
                 <span id="priceRangeLabel">R2000</span>
             </div>
         </div>
@@ -141,13 +141,16 @@
         </div>
     </footer>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/nav-auth.js"></script>
     <script src="js/data.js"></script>
     <script src="js/listings.js"></script>
     <script src="js/guide.js"></script>
 </body>
 
 
-</body>
+
 
 </html>

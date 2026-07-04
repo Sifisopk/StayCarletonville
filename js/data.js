@@ -98,27 +98,27 @@ const listings = [
     location: "West Carletonville",
     description: "Quiet stay with a relaxing atmosphere. Enjoy beautiful sunsets from your room.",
     price: 390,
-    image: "Assets/images/Elspeth/Elspeth1.avif",
+    image: "Assets/images/Elspeth/Elspeth1.webp",
     amenities: ["breakfast", "parking"],
     phone: "+27187872694",
     maps: "https://maps.app.goo.gl/gZTGPmFiFJsop9SH9",
     gallery: [
-      "Assets/images/Elspeth/Elspeth1.avif",
-      "Assets/images/Elspeth/Elspeth2.avif",
-      "Assets/images/Elspeth/Elspeth3.avif",
-      "Assets/images/Elspeth/Elspeth4.avif",
-      "Assets/images/Elspeth/Elspeth5.avif",
-      "Assets/images/Elspeth/Elspeth6.avif",
-      "Assets/images/Elspeth/Elspeth7.avif",
-      "Assets/images/Elspeth/Elspeth8.avif",
-      "Assets/images/Elspeth/Elspeth9.avif",
-      "Assets/images/Elspeth/Elspeth10.avif",
-      "Assets/images/Elspeth/Elspeth11.avif",
-      "Assets/images/Elspeth/Elspeth12.avif",
-      "Assets/images/Elspeth/Elspeth13.avif",
-      "Assets/images/Elspeth/Elspeth14.avif",
-      "Assets/images/Elspeth/Elspeth15.avif",
-      "Assets/images/Elspeth/Elspeth11.avif"
+      "Assets/images/Elspeth/Elspeth1.webp",
+      "Assets/images/Elspeth/Elspeth2.webp",
+      "Assets/images/Elspeth/Elspeth3.webp",
+      "Assets/images/Elspeth/Elspeth4.webp",
+      "Assets/images/Elspeth/Elspeth5.webp",
+      "Assets/images/Elspeth/Elspeth6.webp",
+      "Assets/images/Elspeth/Elspeth7.webp",
+      "Assets/images/Elspeth/Elspeth8.webp",
+      "Assets/images/Elspeth/Elspeth9.webp",
+      "Assets/images/Elspeth/Elspeth10.webp",
+      "Assets/images/Elspeth/Elspeth11.webp",
+      "Assets/images/Elspeth/Elspeth12.webp",
+      "Assets/images/Elspeth/Elspeth13.webp",
+      "Assets/images/Elspeth/Elspeth14.webp",
+      "Assets/images/Elspeth/Elspeth15.webp",
+      "Assets/images/Elspeth/Elspeth11.webp"
     ],
     rooms: [
       {
@@ -127,7 +127,7 @@ const listings = [
         guests: 1,
         price: 390,
         description: "Quiet room with sunset views and home-cooked breakfast every morning.",
-        images: ["Assets/images/Elspeth/Elspeth1.avif", "Assets/images/Elspeth/Elspeth2.avif"]
+        images: ["Assets/images/Elspeth/Elspeth1.webp", "Assets/images/Elspeth/Elspeth2.webp"]
       },
       {
         name: "Double Room",
@@ -135,7 +135,7 @@ const listings = [
         guests: 2,
         price: 580,
         description: "Comfortable double room with a private patio facing the western sunset.",
-        images: ["Assets/images/Elspeth/Elspeth8.avif"]
+        images: ["Assets/images/Elspeth/Elspeth8.webp"]
       },
      /* {
         name: "Family Room",
@@ -256,10 +256,10 @@ const listings = [
       "Assets/images/casablanca/casablanca8.webp",
       "Assets/images/casablanca/casablanca9.webp",
       "Assets/images/casablanca/casablanca10.webp",
-      "Assets/images/casablanca/casablanca11.jpg",
-      "Assets/images/casablanca/casablanca12.jpg",
-      "Assets/images/casablanca/casablanca13.jpg",
-      "Assets/images/casablanca/casablanca14.jpg"
+      "Assets/images/casablanca/casablanca11.webp",
+      "Assets/images/casablanca/casablanca12.webp",
+      "Assets/images/casablanca/casablanca13.webp",
+      "Assets/images/casablanca/casablanca14.webp"
     ],
     rooms: [
       {

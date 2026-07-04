@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Edit Listing - Stay Carletonville</title>
+
+
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="Assets/images/logo.svg" width="200px" alt="Logo">
+        </div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Browse stays</a></li>
+            <li><a href="dashboard.html">My Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <section class="list-bnb-page">
+        <div class="list-bnb-container">
+
+            <!-- ===== LISTING DETAILS FORM ===== -->
+            <div class="list-bnb-header">
+                <p class="list-bnb-tag">Owner Dashboard</p>
+                <h1>Edit Listing</h1>
+                <p class="list-bnb-text">Update your property details below. Manage rooms in the section underneath.</p>
+            </div>
+
+            <form id="editListingForm" class="list-bnb-form">
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="name">B&amp;B Name</label>
+                        <input type="text" id="name" required placeholder="Enter business name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location / Area</label>
+                        <input type="text" id="location" required placeholder="e.g. Central Carletonville">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price">Base Price Per Night (R)</label>
+                        <input type="number" id="price" required min="0" placeholder="e.g. 450">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="e.g. 0712345678">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="maps">Google Maps Link</label>
+                        <input type="url" id="maps" placeholder="Paste Google Maps URL">
+                    </div>
+
+                    <!-- Main Image -->
+                    <div class="form-group full-width">
+                        <label for="newMainImage">Replace Main Image (optional)</label>
+                        <input type="file" id="newMainImage" accept="image/*">
+                        <p id="currentImageNote" class="form-note"></p>
+                    </div>
+
+                    <!-- Gallery -->
+                    <div class="form-group full-width">
+                        <label>Gallery Images</label>
+                        <p class="form-note">Click ✕ on any image to remove it, then upload new ones below.</p>
+                        <div class="gallery-grid" id="galleryPreview"></div>
+                        <p id="galleryEmpty" class="gallery-empty" style="display:none;">No gallery images yet.</p>
+
+                        <label for="newGalleryImages" style="margin-top:1rem; display:block;">Add More Gallery
+                            Images</label>
+                        <input type="file" id="newGalleryImages" accept="image/*" multiple>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div class="form-group full-width">
+                        <label>Amenities</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="wifi"> WiFi</label>
+                            <label><input type="checkbox" value="breakfast"> Breakfast</label>
+                            <label><input type="checkbox" value="parking"> Parking</label>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group full-width">
+                        <label for="description">Property Description</label>
+                        <textarea id="description" rows="5" required
+                            placeholder="Tell us about your property"></textarea>
+                    </div>
+
+                </div>
+
+                <p id="editError" class="form-feedback form-feedback-error"></p>
+                <p id="editStatus" class="form-feedback"></p>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="saveBtn">Save Changes</button>
+                    <a href="dashboard.html" class="submit-btn form-cancel-link">Cancel</a>
+                </div>
+            </form>
+
+
+            <!-- ===== ROOMS MANAGER ===== -->
+            <div class="rooms-manager">
+
+                <div class="rooms-manager-header">
+                    <div>
+                        <h2><i class="fa-solid fa-door-open"></i> Rooms &amp; Pricing</h2>
+                        <p>Add the room types available at your property, each with its own price.</p>
+                    </div>
+                </div>
+
+                <!-- existing rooms list -->
+                <div id="roomsList">
+                    <p class="gallery-empty">Loading rooms...</p>
+                </div>
+
+                <!-- add room form -->
+                <div class="add-room-section">
+                    <h3><i class="fa-solid fa-plus"></i> Add a New Room</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="roomName">Room Name</label>
+                            <input type="text" id="roomName" placeholder="e.g. Double Room">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="roomPrice">Price Per Night (R)</label>
+                            <input type="number" id="roomPrice" min="0" placeholder="e.g. 550">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="roomBeds">Number of Beds</label>
+                            <input type="number" id="roomBeds" min="1" value="1" placeholder="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="roomGuests">Max Guests</label>
+                            <input type="number" id="roomGuests" min="1" value="2" placeholder="2">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="roomDescription">Room Description</label>
+                            <textarea id="roomDescription" rows="3" placeholder="Describe this room type..."></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="roomImages">Room Images (optional)</label>
+                            <input type="file" id="roomImages" accept="image/*" multiple>
+                            <div class="room-images-preview" id="roomImagesPreview"></div>
+                        </div>
+
+                    </div>
+
+                    <p id="roomError" class="form-feedback form-feedback-error"></p>
+                    <p id="roomStatus" class="form-feedback"></p>
+
+                    <button type="button" class="submit-btn" id="addRoomBtn" style="margin-top:1.25rem;">
+                        <i class="fa-solid fa-plus"></i> Add Room
+                    </button>
+                </div>
+
+            </div>
+
+        </div><!-- /.list-bnb-container -->
+    </section>
+
+    <script src="js/supabase-client.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/edit-listing.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Admin Panel - Stay Carletonville</title>
+
+
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="Assets/images/logo.svg" width="200px" alt="Logo">
+        </div>
+        <button class="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="listings.html">Browse stays</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="admin-wrap">
+
+        <div class="admin-header">
+            <div>
+                <h1><i class="fa-solid fa-shield-halved"></i> Admin Panel</h1>
+                <p id="adminWelcome">Loading...</p>
+            </div>
+            <button class="dashboard-btn dashboard-btn-secondary" onclick="logOut()">Log Out</button>
+        </div>
+
+        <!-- TABS -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-panel="panelListings">
+                <i class="fa-solid fa-house"></i> Listings
+                <span class="tab-badge" id="pendingBadge" style="display:none;">0</span>
+            </button>
+            <button class="admin-tab" data-panel="panelEvents">
+                <i class="fa-solid fa-calendar-days"></i> Events
+            </button>
+            <button class="admin-tab" data-panel="panelRestaurants">
+                <i class="fa-solid fa-utensils"></i> Restaurants
+            </button>
+            <button class="admin-tab" data-panel="panelNightlife">
+                <i class="fa-solid fa-music"></i> Nightlife
+            </button>
+            <button class="admin-tab" data-panel="panelAttractions">
+                <i class="fa-solid fa-landmark"></i> Attractions
+            </button>
+        </div>
+
+        <!-- ===== LISTINGS PANEL ===== -->
+        <div class="admin-panel active" id="panelListings">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>Pending Listings</h2>
+                </div>
+                <div id="pendingListings">
+                    <p class="admin-empty">Loading...</p>
+                </div>
+                <div class="pagination" id="pendingListingsPagination"></div>
+            </div>
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>All Listings</h2>
+                </div>
+                <div id="allListings">
+                    <p class="admin-empty">Loading...</p>
+                </div>
+                <div class="pagination" id="allListingsPagination"></div>
+            </div>
+        </div>
+
+        <!-- ===== EVENTS PANEL ===== -->
+        <div class="admin-panel" id="panelEvents">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>Events</h2>
+                </div>
+                <div id="eventsList">
+                    <p class="admin-empty">Loading...</p>
+                </div>
+                <div class="pagination" id="eventsListPagination"></div>
+
+                <div class="admin-add-form" id="addEventForm">
+                    <h3><i class="fa-solid fa-plus"></i> Add / Edit Event</h3>
+                    <input type="hidden" id="eventEditId">
+                    <div class="admin-form-grid">
+                        <div class="admin-form-group">
+                            <label>Title</label>
+                            <input type="text" id="eventTitle" placeholder="e.g. Carletonville Summer Festival">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Location</label>
+                            <input type="text" id="eventLocation" placeholder="e.g. Central Park">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Start Date</label>
+                            <input type="date" id="eventDate">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>End Date (optional)</label>
+                            <input type="date" id="eventEndDate">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Image URL (optional)</label>
+                            <input type="url" id="eventImage" placeholder="https://...">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Link / URL (optional)</label>
+                            <input type="url" id="eventLink" placeholder="https://...">
+                        </div>
+                        <div class="admin-form-group admin-form-full">
+                            <label>Short Description</label>
+                            <textarea id="eventDesc" rows="2"
+                                placeholder="One-line teaser shown on the card..."></textarea>
+                        </div>
+                        <div class="admin-form-group admin-form-full">
+                            <label>Full Description (shown in popup)</label>
+                            <textarea id="eventFullDesc" rows="4"
+                                placeholder="Full details, ticket prices, times..."></textarea>
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Status</label>
+                            <select id="eventStatus">
+                                <option value="active">Active (visible)</option>
+                                <option value="inactive">Inactive (hidden)</option>
+                            </select>
+                        </div>
+                        <div class="admin-form-group"
+                            style="display:flex;align-items:center;gap:0.5rem;padding-top:1.5rem;">
+                            <input type="checkbox" id="eventFeatured" style="width:auto;">
+                            <label for="eventFeatured"
+                                style="text-transform:none;letter-spacing:0;font-size:0.9rem;">Feature this event in the
+                                hero</label>
+                        </div>
+                    </div>
+                    <p class="admin-feedback admin-feedback-error" id="eventError"></p>
+                    <p class="admin-feedback admin-feedback-success" id="eventSuccess"></p>
+                    <div class="admin-form-actions">
+                        <button class="submit-btn" id="saveEventBtn" onclick="saveEvent()">Save Event</button>
+                        <button class="submit-btn" style="background:#6b7280;" onclick="resetEventForm()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== RESTAURANTS PANEL ===== -->
+        <div class="admin-panel" id="panelRestaurants">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>Restaurants</h2>
+                </div>
+                <div id="restaurantsList">
+                    <p class="admin-empty">Loading...</p>
+                </div>
+                <div class="pagination" id="restaurantsListPagination"></div>
+
+                <div class="admin-add-form">
+                    <h3><i class="fa-solid fa-plus"></i> Add / Edit Restaurant</h3>
+                    <input type="hidden" id="restaurantEditId">
+                    <div class="admin-form-grid">
+                        <div class="admin-form-group">
+                            <label>Name</label>
+                            <input type="text" id="restaurantName" placeholder="e.g. Casablanca Restaurant">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Cuisine</label>
+                            <input type="text" id="restaurantCuisine" placeholder="e.g. International, Steakhouse">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Location</label>
+                            <input type="text" id="restaurantLocation" placeholder="e.g. South Carletonville">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="restaurantPhone" placeholder="e.g. 0712345678">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Price Range</label>
+                            <input type="text" id="restaurantPrice" placeholder="e.g. R80–R200 per person">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Google Maps URL</label>
+                            <input type="url" id="restaurantMaps" placeholder="https://maps.app.goo.gl/...">
+                        </div>
+                        <div class="admin-form-group admin-form-full">
+                            <label>Image URL (optional)</label>
+                            <input type="url" id="restaurantImage" placeholder="https://...">
+                        </div>
+                        <div class="admin-form-group admin-form-full">
+                            <label>Description</label>
+                            <textarea id="restaurantDesc" rows="3" placeholder="Describe the restaurant..."></textarea>
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Status</label>
+                            <select id="restaurantStatus">
+                                <option value="active">Active (visible)</option>
+                                <option value="inactive">Inactive (hidden)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="admin-feedback admin-feedback-error" id="restaurantError"></p>
+                    <p class="admin-feedback admin-feedback-success" id="restaurantSuccess"></p>
+                    <div class="admin-form-actions">
+                        <button class="submit-btn" onclick="saveRestaurant()">Save Restaurant</button>
+                        <button class="submit-btn" style="background:#6b7280;"
+                            onclick="resetRestaurantForm()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== NIGHTLIFE PANEL ===== -->
+        <div class="admin-panel" id="panelNightlife">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>Nightlife &amp; Entertainment</h2>
+                </div>
+                <div id="nightlifeList">
+                    <p class="admin-empty">Loading...</p>
+                </div>
+                <div class="pagination" id="nightlifeListPagination"></div>
+
+                <div class="admin-add-form">
+                    <h3><i class="fa-solid fa-plus"></i> Add / Edit Nightlife Venue</h3>
+                    <input type="hidden" id="nightlifeEditId">
+                    <div class="admin-form-grid">
+                        <div class="admin-form-group">
+                            <label>Name</label>
+                            <input type="text" id="nightlifeName" placeholder="e.g. The Gold Bar">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Type</label>
+                            <input type="text" id="nightlifeType" placeholder="e.g. Bar, Club, Live Music">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Location</label>
+                            <input type="text" id="nightlifeLocation" placeholder="e.g. Main Street">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="nightlifePhone" placeholder="e.g. 0712345678">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Google Maps URL</label>
+                            <input type="url" id="nightlifeMaps" placeholder="https://maps.app.goo.gl/...">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Image URL (optional)</label>
+                            <input type="url" id="nightlifeImage" placeholder="https://...">
+                        </div>
+                        <div class="admin-form-group admin-form-full">
+                            <label>Description</label>
+                            <textarea id="nightlifeDesc" rows="3" placeholder="Describe this venue..."></textarea>
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Status</label>
+                            <select id="nightlifeStatus">
+                                <option value="active">Active (visible)</option>
+                                <option value="inactive">Inactive (hidden)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="admin-feedback admin-feedback-error" id="nightlifeError"></p>
+                    <p class="admin-feedback admin-feedback-success" id="nightlifeSuccess"></p>
+                    <div class="admin-form-actions">
+                        <button class="submit-btn" onclick="saveNightlife()">Save Venue</button>
+                        <button class="submit-btn" style="background:#6b7280;"
+                            onclick="resetNightlifeForm()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ATTRACTIONS PANEL ===== -->
+        <div class="admin-panel" id="panelAttractions">
+            <div class="admin-section">
+                <div class="admin-section-header">
+                    <h2>Attractions</h2>
+                </div>
+                <div id="attractionsList">
+                    <p class="admin-empty">Loading...</p>
+                </div>
+                <div class="pagination" id="attractionsListPagination"></div>
+
+                <div class="admin-add-form">
+                    <h3><i class="fa-solid fa-plus"></i> Add / Edit Attraction</h3>
+                    <input type="hidden" id="attractionEditId">
+                    <div class="admin-form-grid">
+                        <div class="admin-form-group">
+                            <label>Name</label>
+                            <input type="text" id="attractionName" placeholder="e.g. Carletonville Museum">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Entry Fee</label>
+                            <input type="text" id="attractionFee" placeholder="e.g. Free, R50 adults">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Location</label>
+                            <input type="text" id="attractionLocation" placeholder="e.g. Carletonville CBD">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="attractionPhone" placeholder="e.g. 0712345678">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Google Maps URL</label>
+                            <input type="url" id="attractionMaps" placeholder="https://maps.app.goo.gl/...">
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Image URL (optional)</label>
+                            <input type="url" id="attractionImage" placeholder="https://...">
+                        </div>
+                        <div class="admin-form-group admin-form-full">
+                            <label>Description</label>
+                            <textarea id="attractionDesc" rows="3" placeholder="Describe this attraction..."></textarea>
+                        </div>
+                        <div class="admin-form-group">
+                            <label>Status</label>
+                            <select id="attractionStatus">
+                                <option value="active">Active (visible)</option>
+                                <option value="inactive">Inactive (hidden)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="admin-feedback admin-feedback-error" id="attractionError"></p>
+                    <p class="admin-feedback admin-feedback-success" id="attractionSuccess"></p>
+                    <div class="admin-form-actions">
+                        <button class="submit-btn" onclick="saveAttraction()">Save Attraction</button>
+                        <button class="submit-btn" style="background:#6b7280;"
+                            onclick="resetAttractionForm()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.admin-wrap -->
+
+    <script src="js/supabase-client.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
