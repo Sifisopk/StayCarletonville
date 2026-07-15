@@ -32,28 +32,28 @@
     </nav>
 
     <div class="dashboard-wrap">
-        <div class="dashboard-card">
-            <div class="dashboard-top">
-                <div>
-                    <h1>My Listings</h1>
-                    <p id="welcomeText"></p>
-                </div>
-                <div class="dashboard-actions">
-                    <a href="add-listing.html" class="dashboard-btn dashboard-btn-primary">+ Add New Listing</a>
-                    <a href="admin.html" class="dashboard-btn dashboard-btn-secondary">⚙ Admin Panel</a>
-                    <button class="dashboard-btn dashboard-btn-secondary" onclick="logOut()">Log Out</button>
-                </div>
+        <div class="dashboard-top">
+            <div>
+                <h1>My Listings</h1>
+                <p id="welcomeText"></p>
             </div>
-
-            <div id="ownerListings">
-                <p class="dashboard-empty">Loading your listings...</p>
+            <div class="dashboard-actions">
+                <!-- Admin Panel btn — hidden by default, shown only if is_admin = true -->
+                <a id="adminPanelBtn" href="admin.html"
+                    class="dashboard-btn dashboard-btn-secondary dashboard-btn-admin">
+                    <i class="fa-solid fa-shield-halved"></i> Admin Panel
+                </a>
+                <a href="add-listing.html" class="dashboard-btn dashboard-btn-primary">+ Add New Listing</a>
+                <button class="dashboard-btn dashboard-btn-secondary btn-logout" onclick="logOut()">Log Out</button>
             </div>
         </div>
+
+        <div id="ownerListings">
+            <p>Loading your listings...</p>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="js/supabase-client.js"></script>
-    <script src="js/nav.js"></script>
-    <script src="js/nav-auth.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

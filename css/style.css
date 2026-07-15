@@ -111,9 +111,21 @@ body {
     color: #fff;
 }
 
+.dashboard-btn-admin {
+    display: none;
+}
+
+.dashboard-btn-admin.is-visible {
+    display: inline-flex;
+}
+
 .dashboard-btn-danger {
     background: #c0392b;
     color: #fff;
+}
+
+.btn-logout {
+    min-width: auto;
 }
 
 #ownerListings {

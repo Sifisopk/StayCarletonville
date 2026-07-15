@@ -9,6 +9,19 @@
     document.getElementById("welcomeText").textContent =
         `Logged in as ${session.user.email}`;
 
+    // start of admin check
+    const { data: profile } = await supabase
+        .from("profiles")
+        .select("is_admin")
+        .eq("id", session.user.id)
+        .single();
+
+    if (profile && profile.is_admin) {
+        const adminBtn = document.getElementById("adminPanelBtn");
+        if (adminBtn) adminBtn.classList.add("is-visible");
+    }
+    // end of admin check
+
     await loadOwnerListings(session.user.id);
 })();
 
@@ -22,12 +35,12 @@ async function loadOwnerListings(ownerId) {
         .order("created_at", { ascending: false });
 
     if (error) {
-        container.innerHTML = `<p style="color:#c0392b;">Error loading listings: ${error.message}</p>`;
+        container.innerHTML = `<p class="dashboard-error">Error loading listings: ${error.message}</p>`;
         return;
     }
 
     if (!listings || listings.length === 0) {
-        container.innerHTML = `<p>You haven't added any listings yet. Click "+ Add New Listing" to get started.</p>`;
+        container.innerHTML = `<p class="dashboard-empty">You haven't added any listings yet. Click "+ Add New Listing" to get started.</p>`;
         return;
     }
 
