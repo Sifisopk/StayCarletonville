@@ -3582,8 +3582,8 @@ About page css
         position: fixed;
         top: 0;
         right: -100%;
-        width: 100%;
-        height: 70vh;
+        width: 70%;
+        height: 60vh;
         background: #3758f9;
         flex-direction: column;
         align-items: flex-start;
@@ -3593,6 +3593,7 @@ About page css
         z-index: 999;
         box-shadow: -4px 0 20px rgba(0, 0, 0, 0.35);
         margin-right: 0;
+        border-radius: 0 0 0 20px;
     }
     
 
@@ -3606,6 +3607,7 @@ About page css
     }
 
     #list-btn a { 
+        border-radius: 5px;
         color: #1e293b; 
         font-size: 17px; 
         font-weight: 400; }
