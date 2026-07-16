@@ -726,6 +726,7 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
+    justify-items: center;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
@@ -3224,6 +3225,7 @@ About page css
 }
 
 .admin-header {
+    margin-top: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3607,7 +3609,6 @@ About page css
     }
 
     #list-btn a { 
-        border-radius: 5px;
         color: #1e293b; 
         font-size: 17px; 
         font-weight: 400; }
@@ -3782,3 +3783,16 @@ About page css
         font-size: 0.85rem;
     }
 }
+
+/* Utility helpers for removed inline styles */
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+.btn-secondary { background-color: #6b7280; }
+.admin-form-row { display: flex; align-items: center; gap: 0.5rem; padding-top: 1.5rem; }
+.checkbox-auto { width: auto; }
+.checkbox-label { text-transform: none; letter-spacing: 0; font-size: 0.9rem; }
+.field-label-block { margin-top: 1rem; display: block; }
+.mt-1-25 { margin-top: 1.25rem; }
+.icon-large { font-size: 2rem; margin-bottom: 1rem; }
+.icon-primary { color: var(--color-primary); }
+.small-muted { font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem; }

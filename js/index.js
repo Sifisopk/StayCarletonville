@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setFeaturedEventBackground() {
     const indexGuideContent = document.querySelector('.index-guide-content');
-    if (indexGuideContent && guideData && guideData.featuredEvent && guideData.featuredEvent.image) {
+    if (indexGuideContent && typeof guideData !== 'undefined' && guideData.featuredEvent && guideData.featuredEvent.image) {
         indexGuideContent.style.backgroundImage = `url('${guideData.featuredEvent.image}')`;
     }
 }

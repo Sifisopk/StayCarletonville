@@ -423,6 +423,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     await loadGuideData();
 
     renderFeaturedEvent();
+    if (typeof setFeaturedEventBackground === 'function') {
+        setFeaturedEventBackground();
+    }
     renderEvents();
     renderRestaurants();
     renderNightlife();

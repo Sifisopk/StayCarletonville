@@ -82,39 +82,35 @@
                         <label>Gallery Images</label>
                         <p class="form-note">Click ✕ on any image to remove it, then upload new ones below.</p>
                         <div class="gallery-grid" id="galleryPreview"></div>
-                        <p id="galleryEmpty" class="gallery-empty" style="display:none;">No gallery images yet.</p>
+                        <p id="galleryEmpty" class="gallery-empty hidden">No gallery images yet.</p>
 
-                        <label for="newGalleryImages" style="margin-top:1rem; display:block;">Add More Gallery
-                            Images</label>
-                        <input type="file" id="newGalleryImages" accept="image/*" multiple>
+                        <label for="newGalleryImages" class="field-label-block">Add More Gallery
+                            <!-- Amenities -->
+                            <div class="form-group full-width">
+                                <label>Amenities</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" value="wifi"> WiFi</label>
+                                    <label><input type="checkbox" value="breakfast"> Breakfast</label>
+                                    <label><input type="checkbox" value="parking"> Parking</label>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="form-group full-width">
+                                <label for="description">Property Description</label>
+                                <textarea id="description" rows="5" required
+                                    placeholder="Tell us about your property"></textarea>
+                            </div>
+
                     </div>
 
-                    <!-- Amenities -->
-                    <div class="form-group full-width">
-                        <label>Amenities</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" value="wifi"> WiFi</label>
-                            <label><input type="checkbox" value="breakfast"> Breakfast</label>
-                            <label><input type="checkbox" value="parking"> Parking</label>
-                        </div>
+                    <p id="editError" class="form-feedback form-feedback-error"></p>
+                    <p id="editStatus" class="form-feedback"></p>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn" id="saveBtn">Save Changes</button>
+                        <a href="dashboard.html" class="submit-btn form-cancel-link">Cancel</a>
                     </div>
-
-                    <!-- Description -->
-                    <div class="form-group full-width">
-                        <label for="description">Property Description</label>
-                        <textarea id="description" rows="5" required
-                            placeholder="Tell us about your property"></textarea>
-                    </div>
-
-                </div>
-
-                <p id="editError" class="form-feedback form-feedback-error"></p>
-                <p id="editStatus" class="form-feedback"></p>
-
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn" id="saveBtn">Save Changes</button>
-                    <a href="dashboard.html" class="submit-btn form-cancel-link">Cancel</a>
-                </div>
             </form>
 
 
@@ -175,7 +171,7 @@
                     <p id="roomError" class="form-feedback form-feedback-error"></p>
                     <p id="roomStatus" class="form-feedback"></p>
 
-                    <button type="button" class="submit-btn" id="addRoomBtn" style="margin-top:1.25rem;">
+                    <button type="button" class="submit-btn mt-1-25" id="addRoomBtn">
                         <i class="fa-solid fa-plus"></i> Add Room
                     </button>
                 </div>
