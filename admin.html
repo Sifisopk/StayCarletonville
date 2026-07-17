@@ -14,7 +14,351 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <title>Admin Panel - Stay Carletonville</title>
 
+    <style>
+        /* =====================
+           ADMIN LAYOUT
+        ===================== */
+        .admin-wrap {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem 4rem;
+        }
 
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .admin-header h1 {
+            font-size: clamp(22px, 3vw, 32px);
+        }
+
+        .admin-header p {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        /* =====================
+           ADMIN TABS
+        ===================== */
+        .admin-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0;
+        }
+
+        .admin-tab {
+            padding: 0.75rem 1.25rem;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .admin-tab:hover {
+            color: #111827;
+        }
+
+        .admin-tab.active {
+            color: #2563eb;
+            border-bottom-color: #2563eb;
+        }
+
+        .admin-tab .tab-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            border-radius: 20px;
+            padding: 1px 7px;
+            font-size: 0.72rem;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .admin-panel {
+            display: none;
+        }
+
+        .admin-panel.active {
+            display: block;
+        }
+
+        /* =====================
+           SECTION LAYOUT
+        ===================== */
+        .admin-section {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .admin-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .admin-section-header h2 {
+            font-size: 1.1rem;
+            color: #111827;
+        }
+
+        /* =====================
+           LISTING ROWS
+        ===================== */
+        .admin-row {
+            display: grid;
+            grid-template-columns: 90px 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #f1f5f9;
+            border-radius: 12px;
+            margin-bottom: 0.6rem;
+            background: #fdfefe;
+        }
+
+        .admin-row img {
+            width: 90px;
+            height: 68px;
+            object-fit: cover;
+            border-radius: 8px;
+            background: #f1f5f9;
+        }
+
+        .admin-row-img-placeholder {
+            width: 90px;
+            height: 68px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 1.4rem;
+        }
+
+        .admin-row-info h4 {
+            font-size: 0.95rem;
+            color: #111827;
+            margin-bottom: 0.2rem;
+        }
+
+        .admin-row-info p {
+            font-size: 0.82rem;
+            color: #6b7280;
+            margin-bottom: 0.3rem;
+        }
+
+        .admin-row-actions {
+            display: flex;
+            gap: 0.4rem;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .status-pending {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .status-approved {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-inactive {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        /* =====================
+           ADD/EDIT FORM
+        ===================== */
+        .admin-add-form {
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 1.5rem;
+            background: #f8fafc;
+            margin-top: 1.25rem;
+        }
+
+        .admin-add-form h3 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+            color: #111827;
+        }
+
+        .admin-form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .admin-form-full {
+            grid-column: 1 / -1;
+        }
+
+        .admin-form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 0.35rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .admin-form-group input,
+        .admin-form-group textarea,
+        .admin-form-group select {
+            width: 100%;
+            padding: 0.6rem 0.9rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            background: #fff;
+            box-sizing: border-box;
+            color: #111827;
+        }
+
+        .admin-form-group input:focus,
+        .admin-form-group textarea:focus,
+        .admin-form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .admin-form-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .admin-feedback {
+            margin-top: 0.75rem;
+            font-size: 0.88rem;
+            display: none;
+        }
+
+        .admin-feedback-error {
+            color: #b91c1c;
+        }
+
+        .admin-feedback-success {
+            color: #15803d;
+        }
+
+        .admin-empty {
+            text-align: center;
+            color: #9ca3af;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* =====================
+           RESPONSIVE
+        ===================== */
+        /* Feature toggle button */
+        .dashboard-btn-feature {
+            background: #fefce8;
+            color: #854d0e;
+            border: 1px solid #fde68a;
+        }
+
+        .dashboard-btn-feature:hover {
+            background: #fef08a;
+            box-shadow: none;
+        }
+
+        .dashboard-btn-feature.active {
+            background: #f59e0b;
+            color: #fff;
+            border-color: #f59e0b;
+        }
+
+        .dashboard-btn-feature.active:hover {
+            background: #d97706;
+        }
+
+        /* View button */
+        .dashboard-btn-secondary {
+            background: #f1f5f9;
+            color: #374151;
+            border: 1px solid #e2e8f0;
+        }
+
+        .dashboard-btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        @media (max-width: 640px) {
+            .admin-row {
+                grid-template-columns: 70px 1fr;
+            }
+
+            .admin-row-actions {
+                flex-direction: row;
+                grid-column: 1 / -1;
+            }
+
+            .admin-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-form-full {
+                grid-column: 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -46,7 +390,7 @@
         <div class="admin-tabs">
             <button class="admin-tab active" data-panel="panelListings">
                 <i class="fa-solid fa-house"></i> Listings
-                <span class="tab-badge hidden" id="pendingBadge">0</span>
+                <span class="tab-badge" id="pendingBadge" style="display:none;">0</span>
             </button>
             <button class="admin-tab" data-panel="panelEvents">
                 <i class="fa-solid fa-calendar-days"></i> Events
@@ -71,7 +415,6 @@
                 <div id="pendingListings">
                     <p class="admin-empty">Loading...</p>
                 </div>
-                <div class="pagination" id="pendingListingsPagination"></div>
             </div>
             <div class="admin-section">
                 <div class="admin-section-header">
@@ -80,7 +423,6 @@
                 <div id="allListings">
                     <p class="admin-empty">Loading...</p>
                 </div>
-                <div class="pagination" id="allListingsPagination"></div>
             </div>
         </div>
 
@@ -93,56 +435,57 @@
                 <div id="eventsList">
                     <p class="admin-empty">Loading...</p>
                 </div>
-                <div class="pagination" id="eventsListPagination"></div>
 
                 <div class="admin-add-form" id="addEventForm">
                     <h3><i class="fa-solid fa-plus"></i> Add / Edit Event</h3>
                     <input type="hidden" id="eventEditId">
                     <div class="admin-form-grid">
                         <div class="admin-form-group">
-                            <label for="eventTitle">Title</label>
+                            <label>Title</label>
                             <input type="text" id="eventTitle" placeholder="e.g. Carletonville Summer Festival">
                         </div>
                         <div class="admin-form-group">
-                            <label for="eventLocation">Location</label>
+                            <label>Location</label>
                             <input type="text" id="eventLocation" placeholder="e.g. Central Park">
                         </div>
                         <div class="admin-form-group">
-                            <label for="eventDate">Start Date</label>
+                            <label>Start Date</label>
                             <input type="date" id="eventDate">
                         </div>
                         <div class="admin-form-group">
-                            <label for="eventEndDate">End Date (optional)</label>
+                            <label>End Date (optional)</label>
                             <input type="date" id="eventEndDate">
                         </div>
                         <div class="admin-form-group">
-                            <label for="eventImage">Image URL (optional)</label>
+                            <label>Image URL (optional)</label>
                             <input type="url" id="eventImage" placeholder="https://...">
                         </div>
                         <div class="admin-form-group">
-                            <label for="eventLink">Link / URL (optional)</label>
+                            <label>Link / URL (optional)</label>
                             <input type="url" id="eventLink" placeholder="https://...">
                         </div>
                         <div class="admin-form-group admin-form-full">
-                            <label for="eventDesc">Short Description</label>
+                            <label>Short Description</label>
                             <textarea id="eventDesc" rows="2"
                                 placeholder="One-line teaser shown on the card..."></textarea>
                         </div>
                         <div class="admin-form-group admin-form-full">
-                            <label for="eventFullDesc">Full Description (shown in popup)</label>
+                            <label>Full Description (shown in popup)</label>
                             <textarea id="eventFullDesc" rows="4"
                                 placeholder="Full details, ticket prices, times..."></textarea>
                         </div>
                         <div class="admin-form-group">
-                            <label for="eventStatus">Status</label>
+                            <label>Status</label>
                             <select id="eventStatus">
                                 <option value="active">Active (visible)</option>
                                 <option value="inactive">Inactive (hidden)</option>
                             </select>
                         </div>
-                        <div class="admin-form-group admin-form-row">
-                            <input type="checkbox" id="eventFeatured" class="checkbox-auto">
-                            <label for="eventFeatured" class="checkbox-label">Feature this event in the
+                        <div class="admin-form-group"
+                            style="display:flex;align-items:center;gap:0.5rem;padding-top:1.5rem;">
+                            <input type="checkbox" id="eventFeatured" style="width:auto;">
+                            <label for="eventFeatured"
+                                style="text-transform:none;letter-spacing:0;font-size:0.9rem;">Feature this event in the
                                 hero</label>
                         </div>
                     </div>
@@ -150,7 +493,7 @@
                     <p class="admin-feedback admin-feedback-success" id="eventSuccess"></p>
                     <div class="admin-form-actions">
                         <button class="submit-btn" id="saveEventBtn" onclick="saveEvent()">Save Event</button>
-                        <button class="submit-btn btn-secondary" onclick="resetEventForm()">Clear</button>
+                        <button class="submit-btn" style="background:#6b7280;" onclick="resetEventForm()">Clear</button>
                     </div>
                 </div>
             </div>
@@ -165,46 +508,45 @@
                 <div id="restaurantsList">
                     <p class="admin-empty">Loading...</p>
                 </div>
-                <div class="pagination" id="restaurantsListPagination"></div>
 
                 <div class="admin-add-form">
                     <h3><i class="fa-solid fa-plus"></i> Add / Edit Restaurant</h3>
                     <input type="hidden" id="restaurantEditId">
                     <div class="admin-form-grid">
                         <div class="admin-form-group">
-                            <label for="restaurantName">Name</label>
+                            <label>Name</label>
                             <input type="text" id="restaurantName" placeholder="e.g. Casablanca Restaurant">
                         </div>
                         <div class="admin-form-group">
-                            <label for="restaurantCuisine">Cuisine</label>
+                            <label>Cuisine</label>
                             <input type="text" id="restaurantCuisine" placeholder="e.g. International, Steakhouse">
                         </div>
                         <div class="admin-form-group">
-                            <label for="restaurantLocation">Location</label>
+                            <label>Location</label>
                             <input type="text" id="restaurantLocation" placeholder="e.g. South Carletonville">
                         </div>
                         <div class="admin-form-group">
-                            <label for="restaurantPhone">Phone</label>
+                            <label>Phone</label>
                             <input type="tel" id="restaurantPhone" placeholder="e.g. 0712345678">
                         </div>
                         <div class="admin-form-group">
-                            <label for="restaurantPrice">Price Range</label>
+                            <label>Price Range</label>
                             <input type="text" id="restaurantPrice" placeholder="e.g. R80–R200 per person">
                         </div>
                         <div class="admin-form-group">
-                            <label for="restaurantMaps">Google Maps URL</label>
+                            <label>Google Maps URL</label>
                             <input type="url" id="restaurantMaps" placeholder="https://maps.app.goo.gl/...">
                         </div>
                         <div class="admin-form-group admin-form-full">
-                            <label for="restaurantImage">Image URL (optional)</label>
+                            <label>Image URL (optional)</label>
                             <input type="url" id="restaurantImage" placeholder="https://...">
                         </div>
                         <div class="admin-form-group admin-form-full">
-                            <label for="restaurantDesc">Description</label>
+                            <label>Description</label>
                             <textarea id="restaurantDesc" rows="3" placeholder="Describe the restaurant..."></textarea>
                         </div>
                         <div class="admin-form-group">
-                            <label for="restaurantStatus">Status</label>
+                            <label>Status</label>
                             <select id="restaurantStatus">
                                 <option value="active">Active (visible)</option>
                                 <option value="inactive">Inactive (hidden)</option>
@@ -215,7 +557,8 @@
                     <p class="admin-feedback admin-feedback-success" id="restaurantSuccess"></p>
                     <div class="admin-form-actions">
                         <button class="submit-btn" onclick="saveRestaurant()">Save Restaurant</button>
-                        <button class="submit-btn btn-secondary" onclick="resetRestaurantForm()">Clear</button>
+                        <button class="submit-btn" style="background:#6b7280;"
+                            onclick="resetRestaurantForm()">Clear</button>
                     </div>
                 </div>
             </div>
@@ -230,42 +573,41 @@
                 <div id="nightlifeList">
                     <p class="admin-empty">Loading...</p>
                 </div>
-                <div class="pagination" id="nightlifeListPagination"></div>
 
                 <div class="admin-add-form">
                     <h3><i class="fa-solid fa-plus"></i> Add / Edit Nightlife Venue</h3>
                     <input type="hidden" id="nightlifeEditId">
                     <div class="admin-form-grid">
                         <div class="admin-form-group">
-                            <label for="nightlifeName">Name</label>
+                            <label>Name</label>
                             <input type="text" id="nightlifeName" placeholder="e.g. The Gold Bar">
                         </div>
                         <div class="admin-form-group">
-                            <label for="nightlifeType">Type</label>
+                            <label>Type</label>
                             <input type="text" id="nightlifeType" placeholder="e.g. Bar, Club, Live Music">
                         </div>
                         <div class="admin-form-group">
-                            <label for="nightlifeLocation">Location</label>
+                            <label>Location</label>
                             <input type="text" id="nightlifeLocation" placeholder="e.g. Main Street">
                         </div>
                         <div class="admin-form-group">
-                            <label for="nightlifePhone">Phone</label>
+                            <label>Phone</label>
                             <input type="tel" id="nightlifePhone" placeholder="e.g. 0712345678">
                         </div>
                         <div class="admin-form-group">
-                            <label for="nightlifeMaps">Google Maps URL</label>
+                            <label>Google Maps URL</label>
                             <input type="url" id="nightlifeMaps" placeholder="https://maps.app.goo.gl/...">
                         </div>
                         <div class="admin-form-group">
-                            <label for="nightlifeImage">Image URL (optional)</label>
+                            <label>Image URL (optional)</label>
                             <input type="url" id="nightlifeImage" placeholder="https://...">
                         </div>
                         <div class="admin-form-group admin-form-full">
-                            <label for="nightlifeDesc">Description</label>
+                            <label>Description</label>
                             <textarea id="nightlifeDesc" rows="3" placeholder="Describe this venue..."></textarea>
                         </div>
                         <div class="admin-form-group">
-                            <label for="nightlifeStatus">Status</label>
+                            <label>Status</label>
                             <select id="nightlifeStatus">
                                 <option value="active">Active (visible)</option>
                                 <option value="inactive">Inactive (hidden)</option>
@@ -276,7 +618,8 @@
                     <p class="admin-feedback admin-feedback-success" id="nightlifeSuccess"></p>
                     <div class="admin-form-actions">
                         <button class="submit-btn" onclick="saveNightlife()">Save Venue</button>
-                        <button class="submit-btn btn-secondary" onclick="resetNightlifeForm()">Clear</button>
+                        <button class="submit-btn" style="background:#6b7280;"
+                            onclick="resetNightlifeForm()">Clear</button>
                     </div>
                 </div>
             </div>
@@ -291,42 +634,41 @@
                 <div id="attractionsList">
                     <p class="admin-empty">Loading...</p>
                 </div>
-                <div class="pagination" id="attractionsListPagination"></div>
 
                 <div class="admin-add-form">
                     <h3><i class="fa-solid fa-plus"></i> Add / Edit Attraction</h3>
                     <input type="hidden" id="attractionEditId">
                     <div class="admin-form-grid">
                         <div class="admin-form-group">
-                            <label for="attractionName">Name</label>
+                            <label>Name</label>
                             <input type="text" id="attractionName" placeholder="e.g. Carletonville Museum">
                         </div>
                         <div class="admin-form-group">
-                            <label for="attractionFee">Entry Fee</label>
+                            <label>Entry Fee</label>
                             <input type="text" id="attractionFee" placeholder="e.g. Free, R50 adults">
                         </div>
                         <div class="admin-form-group">
-                            <label for="attractionLocation">Location</label>
+                            <label>Location</label>
                             <input type="text" id="attractionLocation" placeholder="e.g. Carletonville CBD">
                         </div>
                         <div class="admin-form-group">
-                            <label for="attractionPhone">Phone</label>
+                            <label>Phone</label>
                             <input type="tel" id="attractionPhone" placeholder="e.g. 0712345678">
                         </div>
                         <div class="admin-form-group">
-                            <label for="attractionMaps">Google Maps URL</label>
+                            <label>Google Maps URL</label>
                             <input type="url" id="attractionMaps" placeholder="https://maps.app.goo.gl/...">
                         </div>
                         <div class="admin-form-group">
-                            <label for="attractionImage">Image URL (optional)</label>
+                            <label>Image URL (optional)</label>
                             <input type="url" id="attractionImage" placeholder="https://...">
                         </div>
                         <div class="admin-form-group admin-form-full">
-                            <label for="attractionDesc">Description</label>
+                            <label>Description</label>
                             <textarea id="attractionDesc" rows="3" placeholder="Describe this attraction..."></textarea>
                         </div>
                         <div class="admin-form-group">
-                            <label for="attractionStatus">Status</label>
+                            <label>Status</label>
                             <select id="attractionStatus">
                                 <option value="active">Active (visible)</option>
                                 <option value="inactive">Inactive (hidden)</option>
@@ -337,7 +679,8 @@
                     <p class="admin-feedback admin-feedback-success" id="attractionSuccess"></p>
                     <div class="admin-form-actions">
                         <button class="submit-btn" onclick="saveAttraction()">Save Attraction</button>
-                        <button class="submit-btn btn-secondary" onclick="resetAttractionForm()">Clear</button>
+                        <button class="submit-btn" style="background:#6b7280;"
+                            onclick="resetAttractionForm()">Clear</button>
                     </div>
                 </div>
             </div>

@@ -3621,6 +3621,9 @@ About page css
     /* Trust */
     .trust-section {
         flex-direction: column;
+           
+    align-items: center;
+    justify-content: center;
         gap: 32px;
         padding: 40px 20px;
     }

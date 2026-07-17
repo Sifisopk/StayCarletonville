@@ -1,8 +1,40 @@
-// Wait for DOM to load
-document.addEventListener('DOMContentLoaded', function() {
-    displayFeaturedListings();
-    setFeaturedEventBackground();
-});
+// =========================================================
+// index.js — Featured Accommodations (home page)
+// Shows featured listings from Supabase.
+// Falls back to first 3 from data.js if Supabase fails.
+// =========================================================
+
+const featuredContainer = document.querySelector(".listing-section .card");
+
+// start of render featured cards
+function renderFeaturedCards(items) {
+    if (!featuredContainer) return;
+    featuredContainer.innerHTML = "";
+
+    items.forEach(listing => {
+        const card = document.createElement("div");
+        card.className = "listing-card";
+        card.innerHTML = `
+            <div class="img-container">
+                <img class="pic-1" src="${listing.image}" alt="${listing.name}">
+            </div>
+            <h2 class="card-text">${listing.name}</h2>
+            <p><i class="fa-solid fa-location-dot"></i> ${listing.location}</p>
+            <p>${listing.description}</p>
+            <div class="tags">
+                ${(listing.amenities || []).map(a => `<span>${a}</span>`).join("")}
+            </div>
+            <div class="listing-view">
+                <p class="price-tag"><strong>R${listing.price}</strong>/night</p>
+                <a class="view-btn" href="details.html?id=${listing.id}">
+                    View details
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        `;
+        featuredContainer.appendChild(card);
+    });
+}
 
 function setFeaturedEventBackground() {
     const indexGuideContent = document.querySelector('.index-guide-content');
@@ -10,66 +42,51 @@ function setFeaturedEventBackground() {
         indexGuideContent.style.backgroundImage = `url('${guideData.featuredEvent.image}')`;
     }
 }
+// end of render featured cards
 
-function displayFeaturedListings() {
-    // Get the container where listings should go
-    // Based on your HTML, the cards are inside a div with class "card"
-    const cardContainer = document.querySelector('.listing-section .card');
-    
-    if (!cardContainer) {
-        console.log('Card container not found');
-        return;
-    }
-    
-    // Clear the existing hardcoded listings
-    cardContainer.innerHTML = '';
-    
-    // Get first 6 listings for featured section (or all if you want)
-    const featuredListings = listings.slice(0, 3);
-    
-    // Generate HTML for each listing
-    featuredListings.forEach(listing => {
-        const listingCard = createListingCard(listing);
-        cardContainer.appendChild(listingCard);
-    });
-}
+// start of load featured
+async function loadFeaturedListings() {
+    // Show first 3 from data.js immediately — page never blank
+    const localFallback = (typeof listings !== "undefined")
+        ? listings.slice(0, 3)
+        : [];
+    renderFeaturedCards(localFallback);
 
-function createListingCard(listing) {
-    const card = document.createElement('div');
-    card.className = 'listing-card';
-    
-    // Create amenities HTML
-    const amenitiesHTML = listing.amenities.map(amenity => {
-        const amenityIcons = {
-            wifi: { name: 'WiFi', icon: 'fa-wifi' },
-            breakfast: { name: 'Breakfast', icon: 'fa-bread-slice' },
-            parking: { name: 'Parking', icon: 'fa-car' }
-        };
-        
-        if (amenityIcons[amenity]) {
-            return `<span>${amenityIcons[amenity].name} <i class="fa-solid ${amenityIcons[amenity].icon}"></i></span>`;
+    // Then try Supabase in background
+    if (typeof supabase === "undefined") return;
+
+    try {
+        const { data, error } = await supabase
+            .from("listings")
+            .select("*")
+            .eq("status", "approved")
+            .eq("featured", true)
+            .order("created_at", { ascending: false });
+
+        if (error) throw error;
+
+        // Only update if DB returned featured listings
+        if (data && data.length > 0) {
+            renderFeaturedCards(data.slice(0, 3));
         }
-        return '';
-    }).join('');
-    
-    card.innerHTML = `
-        <div class="img-container">
-            <img class="pic-1" src="${listing.image}" alt="${listing.name}">
-        </div>
-        <h2 class="card-text">${listing.name}</h2>
-        <p><i class="fa-solid fa-location-dot"></i> ${listing.location}</p>
-        <p>${listing.description.substring(0, 60)}${listing.description.length > 60 ? '...' : ''}</p>
-        <div class="tags">
-            ${amenitiesHTML}
-        </div>
-        <div class="listing-view">
-            <p class="price-tag"><strong>R${listing.price}</strong>/night</p>
-            <a class="view-btn" href="details.html?id=${listing.id}">
-                View details
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-        </div>
-    `;
-    
-    return card;
+        // If no featured listings are set yet, local fallback stays visible
+
+    } catch (err) {
+        // Supabase failed — local data.js cards already showing
+        console.warn("Featured listings: using local fallback.", err.message);
+    }
 }
+// end of load featured
+
+// start of mobile nav
+const navToggle = document.querySelector(".nav-toggle");
+const navLinks  = document.querySelector(".nav-links");
+if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => navLinks.classList.toggle("open"));
+    navLinks.querySelectorAll("a").forEach(a =>
+        a.addEventListener("click", () => navLinks.classList.remove("open"))
+    );
+}
+// end of mobile nav
+
+loadFeaturedListings();

@@ -102,50 +102,6 @@ function makeAdminRow(item, {
     return row;
 }
 
-// =====================
-// Pagination helper
-// =====================
-const ADMIN_PAGE_SIZE = 6;
-const adminPaginationState = {}; // containerId -> current page number
-
-function renderPaginatedList(containerId, paginationId, items, buildRow, emptyHtml) {
-    const container  = document.getElementById(containerId);
-    const paginateEl = document.getElementById(paginationId);
-
-    if (!items || items.length === 0) {
-        container.innerHTML = emptyHtml;
-        if (paginateEl) paginateEl.innerHTML = "";
-        return;
-    }
-
-    const pageCount = Math.ceil(items.length / ADMIN_PAGE_SIZE);
-    let page = adminPaginationState[containerId] || 1;
-    if (page > pageCount) page = pageCount;
-    adminPaginationState[containerId] = page;
-
-    const start     = (page - 1) * ADMIN_PAGE_SIZE;
-    const pageItems = items.slice(start, start + ADMIN_PAGE_SIZE);
-
-    container.innerHTML = "";
-    pageItems.forEach(item => container.appendChild(buildRow(item)));
-
-    if (!paginateEl) return;
-    paginateEl.innerHTML = "";
-    if (pageCount <= 1) return;
-
-    for (let i = 1; i <= pageCount; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        if (i === page) btn.classList.add("active");
-        btn.addEventListener("click", () => {
-            adminPaginationState[containerId] = i;
-            renderPaginatedList(containerId, paginationId, items, buildRow, emptyHtml);
-            container.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-        paginateEl.appendChild(btn);
-    }
-}
-
 // =========================================================
 // LISTINGS
 // =========================================================
@@ -173,10 +129,10 @@ async function loadAllListings() {
         badge.style.display = "inline-block";
     }
 
-    renderListingsSection("pendingListings", "pendingListingsPagination", pending,
+    renderListingsSection("pendingListings", pending,
         "<p class='admin-empty'>No pending listings — you're all caught up!</p>");
 
-    renderListingsSection("allListings", "allListingsPagination", all,
+    renderListingsSection("allListings", all,
         "<p class='admin-empty'>No listings in the database yet.</p>");
 }
 // end of load all listings
@@ -407,10 +363,12 @@ async function openListingPreview(listing, row) {
 // end of open listing preview
 
 
-function renderListingsSection(containerId, paginationId, listings, emptyHtml) {
-    renderPaginatedList(containerId, paginationId, listings, listing => {
-        let row;
-        row = makeAdminRow(listing, {
+function renderListingsSection(containerId, listings, emptyHtml) {
+    const container = document.getElementById(containerId);
+    if (!listings || listings.length === 0) { container.innerHTML = emptyHtml; return; }
+    container.innerHTML = "";
+    listings.forEach(listing => {
+        const row = makeAdminRow(listing, {
             title:      listing.name,
             subtitle:   `${listing.location} · R${listing.price}/night`,
             badgeText:  listing.status,
@@ -423,6 +381,12 @@ function renderListingsSection(containerId, paginationId, listings, emptyHtml) {
                     cls:     "dashboard-btn-secondary",
                     label:   "👁 View",
                     handler: () => openListingPreview(listing, row)
+                },
+                {
+                    action:  "feature",
+                    cls:     listing.featured ? "dashboard-btn-feature active" : "dashboard-btn-feature",
+                    label:   listing.featured ? "★ Unfeature" : "☆ Feature",
+                    handler: () => toggleFeatured(listing, row)
                 },
                 {
                     action:  "approve",
@@ -438,9 +402,59 @@ function renderListingsSection(containerId, paginationId, listings, emptyHtml) {
                 }
             ]
         });
-        return row;
-    }, emptyHtml);
+        container.appendChild(row);
+    });
 }
+
+
+// start of toggleFeatured
+async function toggleFeatured(listing, row) {
+    const newVal = !listing.featured;
+
+    if (newVal) {
+        const { count, error: countError } = await supabase
+            .from("listings")
+            .select("id", { count: "exact", head: true })
+            .eq("featured", true);
+
+        if (countError) {
+            alert("Could not verify featured listings: " + countError.message);
+            return;
+        }
+
+        if (count >= 3) {
+            alert("Only 3 listings may be featured at a time. Unfeature one listing before featuring another.");
+            return;
+        }
+    }
+
+    const { error } = await supabase
+        .from("listings")
+        .update({ featured: newVal })
+        .eq("id", listing.id);
+
+    if (error) { alert("Could not update: " + error.message); return; }
+
+    // update the local listing object so re-renders reflect the new state
+    listing.featured = newVal;
+
+    // update the button in the row without a full reload
+    const featureBtn = row.querySelector("[data-action='feature']");
+    if (featureBtn) {
+        featureBtn.textContent = newVal ? "★ Unfeature" : "☆ Feature";
+        featureBtn.className   = newVal
+            ? "dashboard-btn dashboard-btn-feature active"
+            : "dashboard-btn dashboard-btn-feature";
+    }
+
+    // also update the featured badge on the row subtitle if present
+    const subtitle = row.querySelector(".admin-row-info p");
+    if (subtitle) {
+        const base = subtitle.textContent.replace(" · ⭐ Featured", "");
+        subtitle.textContent = newVal ? base + " · ⭐ Featured" : base;
+    }
+}
+// end of toggleFeatured
 
 // start of update listing status
 async function updateListingStatus(id, status, row) {
@@ -471,9 +485,8 @@ async function loadEvents() {
     if (!events || events.length === 0) { container.innerHTML = "<p class='admin-empty'>No events yet. Add one below.</p>"; return; }
 
     container.innerHTML = "";
-    renderPaginatedList("eventsList", "eventsListPagination", events, event => {
-        let row;
-        row = makeAdminRow(event, {
+    events.forEach(event => {
+        const row = makeAdminRow(event, {
             title:      event.title,
             subtitle:   `${event.location || "No location"} · ${event.date || "Date TBC"}${event.featured ? " · ⭐ Featured" : ""}`,
             badgeText:  event.status,
@@ -494,13 +507,13 @@ async function loadEvents() {
                     handler: async () => {
                         if (!confirm(`Delete "${event.title}"?`)) return;
                         await supabase.from("events").delete().eq("id", event.id);
-                        loadEvents();
+                        row.remove();
                     }
                 }
             ]
         });
-        return row;
-    }, "<p class='admin-empty'>No events yet. Add one below.</p>");
+        container.appendChild(row);
+    });
 }
 // end of load events
 
@@ -575,9 +588,8 @@ async function loadRestaurants() {
     if (!data || data.length === 0) { container.innerHTML = "<p class='admin-empty'>No restaurants yet. Add one below.</p>"; return; }
 
     container.innerHTML = "";
-    renderPaginatedList("restaurantsList", "restaurantsListPagination", data, r => {
-        let row;
-        row = makeAdminRow(r, {
+    data.forEach(r => {
+        const row = makeAdminRow(r, {
             title:      r.name,
             subtitle:   `${r.cuisine || "Cuisine not set"} · ${r.location || "No location"}`,
             badgeText:  r.status,
@@ -598,13 +610,13 @@ async function loadRestaurants() {
                     handler: async () => {
                         if (!confirm(`Delete "${r.name}"?`)) return;
                         await supabase.from("restaurants").delete().eq("id", r.id);
-                        loadRestaurants();
+                        row.remove();
                     }
                 }
             ]
         });
-        return row;
-    }, "<p class='admin-empty'>No restaurants yet. Add one below.</p>");
+        container.appendChild(row);
+    });
 }
 // end of load restaurants
 
@@ -666,9 +678,8 @@ async function loadNightlife() {
     if (!data || data.length === 0) { container.innerHTML = "<p class='admin-empty'>No nightlife venues yet. Add one below.</p>"; return; }
 
     container.innerHTML = "";
-    renderPaginatedList("nightlifeList", "nightlifeListPagination", data, n => {
-        let row;
-        row = makeAdminRow(n, {
+    data.forEach(n => {
+        const row = makeAdminRow(n, {
             title:      n.name,
             subtitle:   `${n.type || "Venue"} · ${n.location || "No location"}`,
             badgeText:  n.status,
@@ -682,13 +693,13 @@ async function loadNightlife() {
                   handler: async () => {
                     if (!confirm(`Delete "${n.name}"?`)) return;
                     await supabase.from("nightlife").delete().eq("id", n.id);
-                    loadNightlife();
+                    row.remove();
                   }
                 }
             ]
         });
-        return row;
-    }, "<p class='admin-empty'>No nightlife venues yet. Add one below.</p>");
+        container.appendChild(row);
+    });
 }
 
 function populateNightlifeForm(n) {
@@ -747,9 +758,8 @@ async function loadAttractions() {
     if (!data || data.length === 0) { container.innerHTML = "<p class='admin-empty'>No attractions yet. Add one below.</p>"; return; }
 
     container.innerHTML = "";
-    renderPaginatedList("attractionsList", "attractionsListPagination", data, a => {
-        let row;
-        row = makeAdminRow(a, {
+    data.forEach(a => {
+        const row = makeAdminRow(a, {
             title:      a.name,
             subtitle:   `${a.entry_fee ? "Entry: " + a.entry_fee : "Free"} · ${a.location || "No location"}`,
             badgeText:  a.status,
@@ -763,13 +773,13 @@ async function loadAttractions() {
                   handler: async () => {
                     if (!confirm(`Delete "${a.name}"?`)) return;
                     await supabase.from("attractions").delete().eq("id", a.id);
-                    loadAttractions();
+                    row.remove();
                   }
                 }
             ]
         });
-        return row;
-    }, "<p class='admin-empty'>No attractions yet. Add one below.</p>");
+        container.appendChild(row);
+    });
 }
 
 function populateAttractionForm(a) {
