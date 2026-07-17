@@ -116,9 +116,96 @@ if (listing) {
     // Rooms
     renderRooms(listing);
 
+    // SEO — unique title, description, canonical & schema per listing
+    updateListingSEO(listing);
+
 } else {
     console.log("No listing found with ID:", listingId);
 }
+}
+
+// =====================
+// SEO — per-listing title, meta description, canonical URL,
+// and LodgingBusiness structured data.
+// Requires the placeholder tags in details.html:
+//   <title id="pageTitle">
+//   <meta id="metaDescription">
+//   <link id="canonicalLink">
+//   <script id="ldJsonListing" type="application/ld+json">
+// =====================
+function updateListingSEO(listing) {
+    const canonicalUrl = `https://overnightstays.co.za/details.html?id=${listing.id}`;
+
+    const lowestPrice = (listing.rooms && listing.rooms.length > 0)
+        ? Math.min(...listing.rooms.map(r => r.price))
+        : listing.price;
+
+    // Title
+    const titleEl = document.getElementById("pageTitle");
+    if (titleEl) {
+        titleEl.textContent = `${listing.name} | B&B in ${listing.location} - OverNightStays`;
+    }
+
+    // Meta description
+    const descEl = document.getElementById("metaDescription");
+    if (descEl) {
+        const rawDesc = `${listing.name} in ${listing.location}, Carletonville. From R${lowestPrice} per night. ${listing.description || ""}`;
+        descEl.setAttribute("content", rawDesc.slice(0, 160));
+    }
+
+    // Canonical
+    const canonicalEl = document.getElementById("canonicalLink");
+    if (canonicalEl) {
+        canonicalEl.setAttribute("href", canonicalUrl);
+    }
+
+    // Open Graph (added dynamically since they weren't in the static template)
+    setOgTag("og:title", `${listing.name} | OverNightStays`);
+    setOgTag("og:description", `From R${lowestPrice} per night in ${listing.location}, Carletonville.`);
+    setOgTag("og:url", canonicalUrl);
+    setOgTag("og:type", "website");
+    if (listing.image) setOgTag("og:image", listing.image.startsWith("http") ? listing.image : `https://overnightstays.co.za/${listing.image}`);
+
+    // LodgingBusiness structured data
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "LodgingBusiness",
+        "name": listing.name,
+        "description": listing.description || undefined,
+        "image": listing.image ? (listing.image.startsWith("http") ? listing.image : `https://overnightstays.co.za/${listing.image}`) : undefined,
+        "priceRange": `R${lowestPrice}`,
+        "telephone": listing.phone || undefined,
+        "url": canonicalUrl,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": listing.location || "Carletonville",
+            "addressRegion": "Gauteng",
+            "addressCountry": "ZA"
+        }
+    };
+    if (listing.rating) {
+        schema.aggregateRating = {
+            "@type": "AggregateRating",
+            "ratingValue": listing.rating,
+            "bestRating": "5"
+        };
+    }
+
+    const ldJsonEl = document.getElementById("ldJsonListing");
+    if (ldJsonEl) {
+        ldJsonEl.textContent = JSON.stringify(schema);
+    }
+}
+
+function setOgTag(property, content) {
+    if (!content) return;
+    let tag = document.querySelector(`meta[property="${property}"]`);
+    if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
+        document.head.appendChild(tag);
+    }
+    tag.setAttribute("content", content);
 }
 
 loadListing();
