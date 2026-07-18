@@ -84,33 +84,36 @@
                         <div class="gallery-grid" id="galleryPreview"></div>
                         <p id="galleryEmpty" class="gallery-empty hidden">No gallery images yet.</p>
 
-                        <label for="newGalleryImages" class="field-label-block">Add More Gallery
-                            <!-- Amenities -->
-                            <div class="form-group full-width">
-                                <label>Amenities</label>
-                                <div class="checkbox-group">
-                                    <label><input type="checkbox" value="wifi"> WiFi</label>
-                                    <label><input type="checkbox" value="breakfast"> Breakfast</label>
-                                    <label><input type="checkbox" value="parking"> Parking</label>
-                                </div>
-                            </div>
-
-                            <!-- Description -->
-                            <div class="form-group full-width">
-                                <label for="description">Property Description</label>
-                                <textarea id="description" rows="5" required
-                                    placeholder="Tell us about your property"></textarea>
-                            </div>
-
+                        <label for="newGalleryImages" class="field-label-block">Add More Gallery Images</label>
+                        <input type="file" id="newGalleryImages" accept="image/*" multiple>
                     </div>
 
-                    <p id="editError" class="form-feedback form-feedback-error"></p>
-                    <p id="editStatus" class="form-feedback"></p>
-
-                    <div class="form-actions">
-                        <button type="submit" class="submit-btn" id="saveBtn">Save Changes</button>
-                        <a href="dashboard.html" class="submit-btn form-cancel-link">Cancel</a>
+                    <!-- Amenities -->
+                    <div class="form-group full-width">
+                        <label>Amenities</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="wifi"> WiFi</label>
+                            <label><input type="checkbox" value="breakfast"> Breakfast</label>
+                            <label><input type="checkbox" value="parking"> Parking</label>
+                        </div>
                     </div>
+
+                    <!-- Description -->
+                    <div class="form-group full-width">
+                        <label for="description">Property Description</label>
+                        <textarea id="description" rows="5" required
+                            placeholder="Tell us about your property"></textarea>
+                    </div>
+
+                </div>
+
+                <p id="editError" class="form-feedback form-feedback-error"></p>
+                <p id="editStatus" class="form-feedback"></p>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="saveBtn">Save Changes</button>
+                    <a href="dashboard.html" class="submit-btn form-cancel-link">Cancel</a>
+                </div>
             </form>
 
 
